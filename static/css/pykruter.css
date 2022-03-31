@@ -41,7 +41,7 @@ h4 {
 }
 
 .final {
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
@@ -95,7 +95,8 @@ h4 {
 
 .answer {
   font-size: large;
-  padding-top: 10px;
+  text-align: left;
+  padding: 40px;
 }
 
 .answer.show {

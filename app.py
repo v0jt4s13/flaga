@@ -5,7 +5,7 @@ from app_files.py_terminal_app_run import runAppInsideScript
 from app_files.moje_biblioteki import mainPageMenuList
 from app_files.password_generator import password_generator
 from app_files.random_python_code import showRandomPythonCode
-from app_files.py_kruter import random_question_from_csv
+from app_files.pykruter import random_question_from_csv
 
 app=Flask(__name__)
 # source flagaenv/bin/activate
@@ -143,9 +143,11 @@ def py_cam():
 @app.route('/pykruter')
 def pykruter():
 	
-	question, answer = random_question_from_csv()
+	question_answer_list = random_question_from_csv()
+	question = question_answer_list[0]
+	answer_list = question_answer_list[1]
  
-	return render_template("pykruter/index.html", question=question, answer=answer)
+	return render_template("pykruter/index.html", question=str(question), answer_list=answer_list)
 
 if __name__=="__main__":
 	app.run()

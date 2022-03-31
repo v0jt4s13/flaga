@@ -5,11 +5,14 @@
     .next_question {
       background-color: cornflowerblue;
       color: aliceblue;
-      padding: 8px;
       font-size: x-large;
       border-style: none;
       display: block;
       cursor: pointer;
+      margin-left: calc(50% - 100px);
+      margin-top: 50px;
+      width: max-content;
+      padding: 15px;
     }
     .butt_answer {
       /*color: #006cff00;*/
@@ -35,9 +38,12 @@
 
     <div style="position:static;text-align:center;margin-bottom:10px;font-size:xx-large;top:15%;">
       {{question}}
-      <div id="answer" class="answer"> {{answer}} </div>
     </div>
-    
+    <div id="answer" class="answer"> 
+      {% for line in answer_list %}
+        {{line}}<br />
+      {% endfor %}
+    </div>    
 
     <div class="final">
       <button class="next_question" onclick="window.location.href=window.location.pathname">Następne pytanie</button>
