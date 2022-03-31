@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Random python code - FlaskApp</title>
+  <style>
+    .title {
+      color: black;
+      background-color: beige;
+      float: left;
+      padding: 10px 5px 10px 10px;
+      border-style: dotted;
+      border-width: thin;
+    }
+    .name {
+      color: black;padding: 10px;
+      background-color: yellow;
+      float: left;
+      padding: 10px 10px 10px 5px;
+    }
+    .clr {
+      clear: both;
+    }
+    .syntax0 {
+      color: black;
+      background-color: #9499f9;
+      float: left;
+      padding: 10px 5px 10px 10px;
+      min-width: 100px;
+    }
+    .syntax1 {
+      color: black;
+      background-color: beige;
+      float: left;
+      padding: 10px 10px 10px 5px;
+    }
+    .parameters-wrap {
+      border-style: dashed;
+      border-bottom-style: none;
+    }
+    .parameters-list-wrap {
+      display:block;
+    }
+    .parameters0 {
+      background-color: #9499f9;
+      float: left;
+      padding: 10px 5px 10px 10px;
+      min-width: 100px;
+    }
+    .parameters1 {
+      background-color: beige;
+      float: left;
+      padding: 10px 10px 10px 5px;
+      width: calc(90% - 75px);
+    }
+    .parameters0-head {
+      background-color: #f75656;
+      float: left;
+      padding: 10px 5px 10px 10px;
+      min-width: 100px;
+    }
+    .parameters1-head {
+      background-color: #f75656;
+      float: left;
+      padding: 10px 10px 10px 5px;
+    }
+    .use-example-wrap {
+      border-style: dashed;
+    }
+    .use-example-title {
+      background-color: #f75656;
+      padding: 10px 5px 10px 10px;
+    }
+    .use-example0 {
+      background-color: #9499f9;
+      float: left;
+      padding: 10px 5px 10px 10px;
+      min-width: 100px;
+    }
+    .use-example1 {
+      background-color: beige;
+      float: left;
+      padding: 10px 10px 10px 5px;
+      width: calc(90% - 75px);
+    }
+    .return-example-title {
+      background-color: #f75656;
+      padding: 10px 5px 10px 10px;
+    }
+    .return-example0 {
+      background-color: #9499f9;
+      float: left;
+      padding: 10px 5px 10px 10px;
+      min-width: 100px;
+    }
+    .return-example1 {
+      background-color: beige;
+      float: left;
+      padding: 10px 10px 10px 5px;
+      width: calc(90% - 75px);
+    }
+    .inserted-data {
+      width: 100%;
+      padding: 4px;
+      font-size: smaller;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<!--[
+  {'Type': 'Metoda'}, {'Name': 'randrange'}, {'Syntax': 'random.randrange(start, stop, step)'}, 
+  {'ParameterValue': [
+    {'start': 'Optional. An integer specifying at which position to start. Default 0'}, 
+    {'stop': 'Required. An integer specifying at which position to end.'}, 
+    {'step': 'Optional. An integer specifying the incrementation. Default 1'}
+    ]
+  }, {'UseExample': [
+    {'Return a number between 0 and 5': 'import random\n\nprint(random.randrange(0, 5))'}
+    ]
+  }, {'Return': ''}
+  ]//-->
+
+{% if type not in "Others": %}
+  <div class="title"><h1>{{type}} {{name}}()</h1></div>
+{% else %}
+  <div class="title"><h1>{{name}}</h1></div>
+{% endif %}
+<div class="clr"></div>
+{% if syntax not in "": %}
+  <div class="syntax0">Syntax</div>
+  <div class="syntax1">{{syntax}}</div>
+  <div class="clr"></div>
+{% endif %}
+
+{% if parameter|length > 0: %}
+  <div class="parameters-wrap">
+    <div class="parameters0-head">Parameter</div>
+    <div class="parameters1-head">Description</div>
+    <div class="clr"></div>
+      
+    <div class="parameters-list-wrap">
+      <div class="inserted-data"><b>Dane wejsciowe:</b> {{parameter}}</div>
+      {% for key in parameter %}
+        <div class="parameters0">{{ loop.index }}. {{ key[1]|replace('\n','<br>') }}</div>
+        <div class="parameters1">{{ key|replace('\n','<br>') }}</div>
+        <div class="clr"></div>
+      {% endfor %}
+    </div>
+
+  </div>
+  <div class="clr"></div>
+{% endif %}
+  
+{% if example|length > 0: %}
+  <div class="use-example-wrap">
+    <div class="use-example-title">Use example:</div>
+    {% for key in example: %}
+      <div class="use-example0">{{ loop.index }}. {{ key[1]|replace('\n','<br>') }}</div>
+      <div class="use-example1">{{ key|replace('\n','<br>') }}</div>
+      <div class="clr"></div>
+    {% endfor %}
+  </div>
+  <div class="clr"></div>
+{% endif %}
+  
+{% if output|length > 0: %}
+  <div class="return-example-wrap">
+    <div class="return-example-title">Wartości wyjściowe:</div>
+    {% for key in output: %}
+      <div class="return-example0">{{ loop.index }}. {{ key[1]|replace('\n','<br>') }}</div>
+      <div class="return-example1">{{ key|replace('\n','<br>') }}</div>
+      <div class="clr"></div>
+    {% endfor %}
+  </div>
+  <div class="clr"></div>
+{% endif %}
+
+<div class="inserted-data"><b>Dane wejsciowe:</b> {{rpc|safe}}</div>
+
+</body>
+</html>
