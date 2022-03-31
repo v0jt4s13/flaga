@@ -1,0 +1,48 @@
+
+<html>
+    <head>
+        <style>
+            * {
+                font-size: 6vh;
+            }
+            div {
+                
+            }
+            .ad, .sponsored {
+                /*float: left;*/
+                background-color: aqua;
+                width: 70vw;
+                height: 10vh;
+                padding: 15px;
+            }
+            .href {
+                /*float: left;*/
+                background-color: rgb(228, 201, 80);
+                width: 70vw;
+                height: 10vh;
+                padding: 15px;
+            }
+            .footer {
+                /*float: left;*/
+                background-color: rgb(132, 80, 228);
+                color: white;
+                width: 70vw;
+                height: 10vh;
+                padding: 15px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="ad" id="ad">Line 1. Class name ad</div>
+        <div class="sponsored" id="sponsored">Line 2. Class name sponsored</div>
+        <div class="href" id="href">Line 3. Standard url ==> <a href="?ad_id=123">to other place</a></div>
+        <div class="href" id="href">Line 4. Upgraded url ==> <a href="?a=b&ad_id=123">to other place</a></div>
+        <div class="footer">How many lines above you see ?</div>
+        <script>
+            console.log(document.getElementById('ad').style.display);
+            console.log(document.getElementById('sponsored').style.width+" x "+document.getElementById('sponsored').style.height);
+            console.log(document.getElementById('href').style.width+" x "+document.getElementById('href').style.height);
+        </script>
+    </body>
+</html>

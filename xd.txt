@@ -1,0 +1,1 @@
+Text w HTML <span style="color:red">się nie sprawdza</span> ale dobrze że są polskie ogonki ;)

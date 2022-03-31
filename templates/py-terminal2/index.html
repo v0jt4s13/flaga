@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+
+		    var to_compile = {
+			    "LanguageChoice": "5",
+			    "Program": $("#code").val(),
+			    "Input": "",
+			    "CompilerArgs" : ""
+		    };
+
+		    $.ajax ({
+			        url: "https://rextester.com/rundotnet/api",
+			        type: "POST",
+			        data: to_compile
+			    }).done(function(data) {
+			        alert(JSON.stringify(data));
+			    }).fail(function(data, err) {
+			        alert("fail " + JSON.stringify(data) + " " + JSON.stringify(err));
+		        });
+	    });
+    });
+    </script>
+		<style>
+			body {
+				background-color: #111;
+				color: #eee;
+				font-size: xx-large;
+			}
+			.left_col {
+				width: 49vw;
+				float: left;
+				background-color: #2b2b2b;
+			}
+			.right_col {
+				width: 49vw;
+    		float: right;
+    		background-color: #2a2a2a;
+			}
+			.term-view {
+				width: 95%;
+				background-color: black;
+				color: green;
+				height: 70%;
+				padding: 8px;
+			}
+			.title-l {
+				float: left;
+    		width: fit-content;
+			}
+			.title {
+				padding: 11px;
+			}
+			.rterm {
+				float: right;
+				margin-right: 20px;
+				margin-top: 5px;
+			}
+			#term-start {
+				font-size: large;
+			}
+			.py-output {
+				font-size: initial;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<!--<div style="font-size: 10vw;color: yellow">Pomoże ktoś ?? :D <br /><span style="font-size:smaller">Jak odebrac parametr metoda POST ?</span></div>//-->
+			<div class="left_col">
+				<div class="title">
+					<div class="title-l">Python terminal</div>
+					<div class="rterm">
+						<button id="run">Run</button>
+					</div>
+				</div>
+				<div class="lbody">
+					
+					<div class="lterm">
+						<textarea class="term-view" id="code">
+							using System;
+							using System.Collections.Generic;
+							using System.Linq;
+							using System.Text.RegularExpressions;
+					
+							namespace Rextester
+							{
+								public class Program
+								{
+									public static void Main(string[] args)
+									{
+										//Your code goes here
+										Console.WriteLine("Hello, world!");
+									}
+								}
+							}      
+						</textarea>
+					</div>
+					
+					
+				</div>
+			</div>
+			<div id="right_col">
+				<div class="title">
+					Python output
+				</div>
+				<div class="py-output">
+					{{text}}
+				</div>				
+			</div>
+		</div>
+	</body>
+</html>

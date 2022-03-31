@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %} - FlaskApp</title>
+  <style>
+    .title {
+      color: black;
+      background-color: beige;
+      float: left;
+      padding: 10px 5px 10px 10px;
+    }
+    .name {
+      color: black;padding: 10px;
+      background-color: yellow;
+      float: left;
+      padding: 10px 10px 10px 5px;
+    }
+    .clr {
+      clear: both;
+    }
+    .syntax0 {
+      color: black;
+      background-color: #9499f9;
+      float: left;
+      padding: 10px 5px 10px 10px;
+      min-width: 100px;
+    }
+    .syntax1 {
+      color: black;
+      background-color: beige;
+      float: left;
+      padding: 10px 10px 10px 5px;
+    }
+    .parameters-wrap {
+      border-style: dashed;
+      border-bottom-style: none;
+    }
+    .parameters-list-wrap {
+      display:block;
+    }
+    .parameters0 {
+      background-color: #9499f9;
+      float: left;
+      padding: 10px 5px 10px 10px;
+      min-width: 100px;
+    }
+    .parameters1 {
+      background-color: beige;
+      float: left;
+      padding: 10px 10px 10px 5px;
+    }
+    .parameters0-head {
+      background-color: #f75656;
+      float: left;
+      padding: 10px 5px 10px 10px;
+      min-width: 100px;
+    }
+    .parameters1-head {
+      background-color: #f75656;
+      float: left;
+      padding: 10px 10px 10px 5px;
+    }
+    .use-example-wrap {
+      border-style: dashed;
+    }
+    .use-example0 {
+      background-color: #9499f9;
+      float: left;
+      padding: 10px 5px 10px 10px;
+    }
+    .use-example1 {
+      background-color: beige;
+      float: left;
+      padding: 10px 10px 10px 5px;
+    }
+    .return-example0 {
+      background-color: #9499f9;
+      float: left;
+      padding: 10px 5px 10px 10px;
+    }
+    .return-example1 {
+      background-color: beige;
+      float: left;slksdfjd
+      padding: 10px 10px 10px 5px;
+    }
+  </style>
+</head>
+<body>
+{% for x in rpc %}
+  {% if x['Type'] == "Metoda": %}
+    Type={{ x['Type'] }}<br>
+    Name={{ x['Name'] }}
+  { % endif % }
+  {{ x['Name'] }}
+  {{ x['Syntax'] }}
+  {{ x['ParameterValue'] }}
+  {{ x['UseExample'] }}
+  {{ x['Return'] }}
+{% endfor %}
+</body>
+</html>

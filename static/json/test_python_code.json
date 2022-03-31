@@ -1,0 +1,161 @@
+[
+    [
+        {
+            "Type": "Metoda"
+        },
+        {
+            "Name": "String center"
+        },
+        {
+            "Syntax": "string.center(length, character)"
+        },
+        {
+            "ParameterValue": [
+                {
+                    "length": "Wymagane. Długość zwracanego ciągu znaków."
+                },
+                {
+                    "character": "Opcjonalne. Znak dopełniający pustą przestrzeń przed i za ciągiem znaków. Wartość domyślna to \" \" (spacja)"
+                }
+            ]
+        },
+        {
+            "UseExample": [
+                {
+                    "Użycie znaku \"+\" jako znaku wypełnienia:": "text = \"powid\u0142a\"<br><br>x = text.center(20, \"+\")"
+                }
+            ]
+        },
+        {
+            "Return": "++++++powidła+++++++"
+        }
+    ],
+    [
+        {
+            "Type": "Metoda"
+        },
+        {
+            "Name": "randrange"
+        },
+        {
+            "Syntax": "random.randrange(start, stop, step)"
+        },
+        {
+            "ParameterValue": [
+                {
+                    "start": "Opcjonalne. An integer specifying at which position to start. Default 0"
+                },
+                {
+                    "stop": "Required. An integer specifying at which position to end."
+                },
+                {
+                    "step": "Optional. An integer specifying the incrementation. Default 1"
+                }
+            ]
+        },
+        {
+            "UseExample": [
+                {
+                    "Return a number between 0 and 5": "import random<br><br>print(random.randrange(0, 5))"
+                }
+            ]
+        },
+        {
+            "Return": ""
+        }
+    ],
+    [
+        {
+            "Type": "Metoda"
+        },
+        {
+            "Name": "Sort"
+        },
+        {
+            "Syntax": "list.sort(reverse=True|False, key=myFunc)"
+        },
+        {
+            "ParameterValue": [
+                {
+                    "reverse": "Optional. reverse=True will sort the list descending. Default is reverse=False"
+                },
+                {
+                    "key": "Optional. A function to specify the sorting criteria(s)"
+                }
+            ]
+        },
+        {
+            "UseExample": [
+                {
+                    "Sort the list descending": "numbers_list = [5, 1, 4]<br><br>numbers_list.sort(reverse=True)"
+                }
+            ]
+        },
+        {
+            "Return": [
+                {
+                    "ReturnType": "list"
+                },
+                {
+                    "ReturnValue": "[1, 4, 5]"
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "Type": "Others"
+        },
+        {
+            "Name": "Zmień wartości na liście"
+        },
+        {
+            "Syntax": "list[poz] = \"string\""
+        },
+        {
+            "ParameterValue": ""
+        },
+        {
+            "UseExample": [
+                {
+                    "Zmień drugą wartość:": "pisaki_list = [\"pi\u00f3ro\", \"oliwa\", \"d\u0142ugopis\", \"o\u0142\u00f3wek\"]<br><br>pisaki_list[1] = \"mazak\""
+                },
+                {
+                    "Zmień kilka wartości:": "pisaki_list = [\"pi\u00f3ro\", \"oliwa\", \"burak\", \"o\u0142\u00f3wek\"]<br><br>pisaki_list[1:3] = [\"mazak\",\"d\u0142ugopis\"]"
+                }
+            ]
+        },
+        {
+            "Return": ""
+        }
+    ],
+    [
+        {
+            "Type": "Method"
+        },
+        {
+            "Name": "pop"
+        },
+        {
+            "Syntax": "list.pop(pozycja)"
+        },
+        {
+            "ParameterValue": {
+                "pozycja": "Opcjonalna. Pozycja określająca miejsce w tablicy usuwanego elementu. Domyślnie jest to -1, oznaczające ostatnią pozycję listy."
+            }
+        },
+        {
+            "UseExample": [
+                {
+                    "Usuń ostatnią pozycję z listy:": "pisaki_list = [\"pi\u00f3ro\", \"oliwa\", \"d\u0142ugopis\", \"o\u0142\u00f3wek\"]<br><br>pisaki_list.pop()"
+                },
+                {
+                    "Usuń 2 pozycjeę z listy": "pisaki_list = [\"pi\u00f3ro\", \"oliwa\", \"burak\", \"o\u0142\u00f3wek\"]<br><br>pisaki_list.pop(1)"
+                }
+            ]
+        },
+        {
+            "Return": "Metoda zwraca usuniętą wartość."
+        }
+    ]    
+]

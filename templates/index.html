@@ -1,0 +1,137 @@
+<html>   
+	<head>
+		<title>Kurs Programowania w Pythonie - index page</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+		body {
+				/*background-color: #112b41;*/
+				background: linear-gradient(to bottom, #005bbb 0%, #005bbb 50%, #ffd500 50%, #ffd500 100%);
+				font-size: large;
+		}
+		ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+		}
+
+		.vertical-menu {
+			width: 40vw;
+			margin-left: auto;
+			margin-right: auto;
+			min-width: 250px;
+			padding-top: 2vh;
+			text-align: center;
+		}
+
+		.vertical-menu a {
+			background-color: #112b41;
+			color: #fdfdfd;
+			display: block;
+			padding: 12px;
+			text-decoration: none;
+		}
+
+		.vertical-menu a:hover {
+			background-color: #005bbb;
+		}
+
+		.text-align-right a:hover {
+			text-align: right;
+			letter-spacing: 0.5vw;
+		}
+
+		.vertical-menu a:hover {
+			background-color: #005bbb;
+		}
+
+		.text-align-left a:hover {
+			text-align: left;
+			letter-spacing: 0.5vw;
+		}
+
+		.vertical-menu a.active {
+			background-color: #04AA6D;
+			color: rgb(221, 41, 41);
+		}
+		.left-col {
+			width: 25vw;
+			margin-left: 25vw;
+		}
+		.left-col hr {
+			width: 25vw;
+			min-width: 250px;
+			float: right;
+		}
+		.right-col {
+			width: 25vw;
+			margin-left: 25vw;
+		}
+		.right-col hr {
+			width: 25vw;
+			min-width: 250px;
+    		float: right;
+		}
+		.center-col {
+			width: 25vw;
+			margin-left: 25vw;
+			/*border-style: double;*/
+    		min-width: 250px;
+			position: sticky;
+		}
+		@media screen and (max-width: 600px) {
+			.center-col {
+				width: 80vw;
+				margin-left: 10vw;
+				position: sticky;
+			}
+			.left-col {
+				width: 10vw;
+				margin-left: 10vw;
+			}
+			.left-col hr {
+				width: 50vw;
+				margin-left: -5vw;
+				float: left;
+			}
+			.right-col {
+				width: 10vw;
+				margin-right: 10vw;
+				/*float: right;*/
+			}
+			.right-col hr {
+				width: 50vw;
+				margin-left: -20vw;
+				float: left;
+			}
+		}
+		</style>
+	</head>
+	<body style="margin: 0px;">
+		<!--<div style="background-color:#005bbbad;width: 100vw;height: 50vh;position: absolute;"></div>
+		<div style="background-color:#ffd500b8;width: 100vw;height: 50vh;position: absolute;margin-top: 50vh;"></div>//-->
+		<div class="left-col"><hr></div>
+		<div class="center-col">
+		<ul class="vertical-menu">
+			<li class="text-align-center"><a href="/"><img src="static/images/wildRift.png" alt="{{text}}" style="width: 70px"></a></li>
+
+			{% for direction, url, title in li_list %}
+				<li class="text-align-{{direction}}">
+					<a href="{{url}}">{{title}}</a>
+				</li>
+			{% endfor %}
+
+		</ul>
+		</div>
+		<div class="right-col">
+			<hr class="right-col-hr">
+			<br /><a href="https://627-dev.aws.londynek.net/">ldnk</a>
+		</div>
+		<div>
+		<!--	
+			{ extends "templates/rpc/index.html.jinja" %}
+			{ extends "/rpc/tutorials-urls.html" %}
+		//->	
+		</div>
+	</body>
+</html>

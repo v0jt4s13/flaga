@@ -1,0 +1,129 @@
+{
+    "ListaDomen": [
+        {
+            "domena": "http://adrianeight.tech",
+            "data": [
+                {
+                    "id": "licznik",
+                    "status_code": 200,
+                    "description": "Status code dla domeny",
+                    "extra": 200
+                }
+            ]
+        },
+        {
+            "domena": "http://wurcu.pl",
+            "data": [
+                {
+                    "id": "licznik",
+                    "status_code": 200,
+                    "description": "Status code dla domeny",
+                    "extra": 200
+                }
+            ]
+        },
+        {
+            "domena": "http://aws.programista.warszawa.pl",
+            "data": [
+                {
+                    "id": "licznik",
+                    "status_code": 200,
+                    "description": "Status code dla domeny",
+                    "extra": 200
+                }
+            ]
+        },
+        {
+            "domena": "http://brownmilleryt.pl",
+            "data": [
+                {
+                    "id": "licznik",
+                    "status_code": 200,
+                    "description": "Status code dla domeny",
+                    "extra": 200
+                }
+            ]
+        },
+        {
+            "domena": "http://animuscreations.pl",
+            "data": [
+                {
+                    "id": "licznik",
+                    "status_code": 200,
+                    "description": "Status code dla domeny",
+                    "extra": 200
+                }
+            ]
+        },
+        {
+            "domena": "http://pythonistaxd.pl",
+            "data": [
+                {
+                    "id": "licznik",
+                    "status_code": 200,
+                    "description": "Status code dla domeny",
+                    "extra": 200
+                }
+            ]
+        },
+        {
+            "domena": "http://karolina-jedrzejak.com.pl",
+            "data": [
+                {
+                    "id": "licznik",
+                    "status_code": 200,
+                    "description": "Status code dla domeny",
+                    "extra": 200
+                }
+            ]
+        },
+        {
+            "domena": "http://t-mike.pl",
+            "data": [
+                {
+                    "id": "licznik",
+                    "status_code": 200,
+                    "description": "Status code dla domeny",
+                    "extra": 200
+                }
+            ]
+        },
+        {
+            "domena": "http://etyczne-dziennikarstwo.pl",
+            "data": [
+                {
+                    "id": "licznik",
+                    "status_code": null,
+                    "description": "Status code dla domeny",
+                    "extra": null
+                }
+            ]
+        },
+        {
+            "domena": "http://telusmikolaj.com",
+            "data": [
+                {
+                    "id": "licznik",
+                    "status_code": null,
+                    "description": "Status code dla domeny",
+                    "extra": null
+                }
+            ]
+        }
+    ],
+    "IloscDomen": 10,
+    "Status200": 8,
+    "Statusy": [
+        null
+    ],
+    "BledneDomeny": [
+        [
+            null,
+            "http://etyczne-dziennikarstwo.pl"
+        ],
+        [
+            null,
+            "http://telusmikolaj.com"
+        ]
+    ]
+}

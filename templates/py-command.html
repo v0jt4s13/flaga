@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Random python code - FlaskApp</title>
+  <style>
+    .title {
+      color: black;
+      background-color: beige;
+      float: left;
+      padding: 10px 5px 10px 10px;
+      border-style: dotted;
+      border-width: thin;
+      margin-top: 10px;
+    }
+    .headline {
+      padding: 10px;
+      background-color: bisque;
+      margin-bottom: 10px;
+    }
+    .description {
+      margin-top: 10px;
+    }
+    .main-wrap {
+      display: grid;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-wrap">
+    <div class="title"><h1>operatory aytmetyczne :  +-*/ %</h1></div>
+    <div class="headline">mozliwy zapis: </div>
+    <div class="description">
+      a = 5<br>
+      a+=3 ===> a = a + 3<br>
+      a == 8<br>
+
+    </div>
+    
+    <div class="title"><h1>stringi</h1></div>
+    <div class="headline">funkcje: </div>
+    <div class="description">
+      len(str)
+    </div>
+    <div class="headline">metody: </div>
+    <div class="description">
+      1	capitalize() - Capitalizes first letter of string<br>
+      2	center(width, fillchar) - Returns a space-padded string with the original string centered to a total of width columns.<br>
+      3	count(str, beg= 0,end=len(string)) -       Counts how many times str occurs in string or in a substring of string if starting index beg and ending index end are given.<br>
+      4	decode(encoding='UTF-8',errors='strict') -       Decodes the string using the codec registered for encoding. encoding defaults to the default string encoding.<br>
+      5	encode(encoding='UTF-8',errors='strict') -       Returns encoded string version of string; on error, default is to raise a ValueError unless errors is given with 'ignore' or 'replace'.<br>
+      6	endswith(suffix, beg=0, end=len(string)) -       Determines if string or a substring of string (if starting index beg and ending index end are given) ends with suffix; returns true if so and false otherwise.<br>
+      7	expandtabs(tabsize=8) -       Expands tabs in string to multiple spaces; defaults to 8 spaces per tab if tabsize not provided.<br>
+      8	find(str, beg=0 end=len(string)) -       Determine if str occurs in string or in a substring of string if starting index beg and ending index end are given returns index if found and -1 otherwise.<br>
+      9	index(str, beg=0, end=len(string)) -       Same as find(), but raises an exception if str not found.<br>
+      10	isalnum() -       Returns true if string has at least 1 character and all characters are alphanumeric and false otherwise.<br>
+      11	isalpha() -       Returns true if string has at least 1 character and all characters are alphabetic and false otherwise.<br>
+      12	isdigit() -       Returns true if string contains only digits and false otherwise.<br>
+      13	islower() -       Returns true if string has at least 1 cased character and all cased characters are in lowercase and false otherwise.<br>
+      14	isnumeric() -       Returns true if a unicode string contains only numeric characters and false otherwise.<br>
+      15	isspace() -       Returns true if string contains only whitespace characters and false otherwise.<br>
+      16	istitle() -       Returns true if string is properly "titlecased" and false otherwise.<br>
+      17	isupper() -       Returns true if string has at least one cased character and all cased characters are in uppercase and false otherwise.<br>
+      18	join(seq) -       Merges (concatenates) the string representations of elements in sequence seq into a string, with separator string.<br>
+      19	len(string) -       Returns the length of the string<br>
+      20	ljust(width[, fillchar]) -       Returns a space-padded string with the original string left-justified to a total of width columns.<br>
+      21	lower() -       Converts all uppercase letters in string to lowercase.<br>
+      22	lstrip() -       Removes all leading whitespace in string.<br>
+      23	maketrans() -       Returns a translation table to be used in translate function.<br>
+      24	max(str) -       Returns the max alphabetical character from the string str.<br>
+      25	min(str) -       Returns the min alphabetical character from the string str.<br>
+      26	replace(old, new [, max]) -       Replaces all occurrences of old in string with new or at most max occurrences if max given.<br>
+      27	rfind(str, beg=0,end=len(string)) -       Same as find(), but search backwards in string.<br>
+      28	rindex( str, beg=0, end=len(string)) -       Same as index(), but search backwards in string.<br>
+      29	rjust(width,[, fillchar]) -       Returns a space-padded string with the original string right-justified to a total of width columns.<br>
+      30	rstrip() -       Removes all trailing whitespace of string.<br>
+      31	split(str="", num=string.count(str)) -       Splits string according to delimiter str (space if not provided) and returns list of substrings; split into at most num substrings if given.<br>
+      32	splitlines( num=string.count('\n')) -       Splits string at all (or num) NEWLINEs and returns a list of each line with NEWLINEs removed.<br>
+      33	startswith(str, beg=0,end=len(string)) -       Determines if string or a substring of string (if starting index beg and ending index end are given) starts with substring str; returns true if so and false otherwise.<br>
+      34	strip([chars]) -       Performs both lstrip() and rstrip() on string. <br>
+      35	swapcase() -       Inverts case for all letters in string.<br>
+      36	title() -       Returns "titlecased" version of string, that is, all words begin with uppercase and the rest are lowercase.<br>
+      37	translate(table, deletechars="") -       Translates string according to translation table str(256 chars), removing those in the del string.<br>
+      38	upper() -      Converts lowercase letters in string to uppercase.<br>
+      39	zfill (width) -       Returns original string leftpadded with zeros to a total of width characters; intended for numbers, zfill() retains any sign given (less one zero).<br>
+      40	isdecimal() -       Returns true if a unicode string contains only decimal characters and false otherwise.<br>
+      <br>
+      str = 'jakis string'<br>
+      str.capitalize()<br>
+      str.upper() str.lower()<br>
+      str[0] = j<br>
+      str[0:2] = ja<br>
+      str[-3:] = ing<br>
+      str.split(' ') => lista_slow<br>
+      ' '.join(lista_slow)<br>
+      str.startswith('j')<br>
+      str.endswith('g')<br>
+      str.rstrip('g') / str.lstrip('g') / str.strip()<br>
+      str.join(str1, str2)<br>
+      str(325).zfill(5) => 00325 / str(5).zfill(5) ==> 00005<br>
+      str.isnumeric()<br>
+    </div>
+
+    <div class="title"><h1>instrukcje warunkowe</h1></div>
+    <div class="description">
+      print("Jedz") if light == 'green' else print("Czekaj")
+    </div>
+
+    <div class="title"><h1>pętle</h1></div>
+    <div class="description">
+      while <br>
+      for int in range(1,10):	-> for int in range(0,30, 3):<br>
+        1 - 9												0,3,6,9 ... 27<br>
+
+    </div>
+
+    <div class="title"><h1>struktury danych</h1></div>
+    <div class="headline">list, set, tuple(krotka), dictionary: </div>
+    <div class="description">
+      Python list functions:<br>
+      1	cmp(list1, list2) - Compares elements of both lists.<br>
+      2	len(list) - Gives the total length of the list.<br>
+      3	max(list) - Returns item from the list with max value.<br>
+      4	min(list) - Returns item from the list with min value.<br>
+      5	list(seq) - Converts a tuple into list.<br>
+      <br>Python list methods:<br>
+      1	list.append(obj) - Appends object obj to list<br>
+      2	list.count(obj) - Returns count of how many times obj occurs in list<br>
+      3	list.extend(seq) - Appends the contents of seq to list<br>
+      4	list.index(obj) - Returns the lowest index in list that obj appears<br>
+      5	list.insert(index, obj) - Inserts object obj into list at offset index<br>
+      6	list.pop(obj=list[-1]) - Removes and returns last object or obj from list<br>
+      7	list.remove(obj) - Removes object obj from list<br>
+      8	list.reverse() - Reverses objects of list in place<br>
+      9	list.sort([func]) - Sorts objects of list, use compare func if given<br>
+      <br>
+      list.reverse()<br>
+      list.sort()<br>
+      list.append()<br>
+      list.count(el)<br>
+      list.pop()<br>
+      list.remove()<br>
+      list.clear()<br>
+      <br>
+      if 1 in json_dict.keys(): True<br>
+      if 'two' in json_dict.values(): True<br>
+      ---------------------------------------------------------------------------------------<br>
+      json.get('websites') ==> [{'page': 'website0_url', 'urls_list': [{'url': 'https://url-0-1-link'}, {'url': 'https://url-0-2-link'}]}, {'page': 'website1_url', 'urls_list': [{'url': 'https://url-1-1-link', 'title': 'jakis tytul 1 1'}, {'url': 'https://url-1-2-link', 'title': 'jakis tytul 1 2'}]}, {'page': 'website2_url', 'urls_list': [{'url': 'https://url-2-1-link', 'title': 'tytul 2 1'}, {'url': 'https://url-2-2-link', 'title': 'tutul 2 2'}]}]<br>
+      json.get('websites')[1] ==> {'page': 'website1_url', 'urls_list': [{'url': 'https://url-1-1-link', 'title': 'jakis tytul 1 1'}, {'url': 'https://url-1-2-link', 'title': 'jakis tytul 1 2'}]}<br>
+      json.get('websites')[1]['page'] ==> website1_url<br>
+      json.get('websites')[1]['urls_list'] ==> [{'url': 'https://url-1-1-link', 'title': 'jakis tytul 1 1'}, {'url': 'https://url-1-2-link', 'title': 'jakis tytul 1 2'}]<br>
+      json.get('websites')[1]['urls_list'][0] ==> {'url': 'https://url-1-1-link', 'title': 'jakis tytul 1 1'}<br>
+      json.get('websites')[1]['urls_list'][1] ==> {'url': 'https://url-1-2-link', 'title': 'jakis tytul 1 2'}<br>
+      json.get('websites')[1]['urls_list'][1]['url'] ==> https://url-1-2-link<br>
+      ---------------------------------------------------------------------------------------<br>
+      json.keys() ===>  1 dict_keys(['websites'])<br>
+      json.get('nieistniejący_klucz','nie znaleziono') ==> nie znaleziono<br>
+      {'websites': [{'page': 'website0_url', 'urls_list': [{'url': 'https://url-0-1-link'}, {'url': 'https://url-0-2-link'}]}, {'page': 'website1_url', 'urls_list': [{'url': 'https://url-1-1-link', 'title': 'jakis tytul 1 1'}, {'url': 'https://url-1-2-link', 'title': 'jakis tytul 1 2'}]}, {'page': 'website2_url', 'urls_list': [{'url': 'https://url-2-1-link', 'title': 'tytul 2 1'}, {'url': 'https://url-2-2-link', 'title': 'tutul 2 2'}]}]}<br>
+      **************************************************<br>
+      for items in json.get('websites'): ==> 3<br>
+        name = list(items.keys()) 	==> ['page', 'urls_list']<br>
+        list(items.keys())[0] 		==> page<br>
+        items.get(name[0]) 		==> website0_url<br>
+        items.get(name[-1]) 		==> 2 [{'url': 'https://url-0-1-link'}, {'url': 'https://url-0-2-link'}]<br>
+          items2.keys() ==> dict_keys(['url'])<br>
+          items2==> url= https://url-0-1-link  ; title= None<br>
+          items2.keys() ==> dict_keys(['url'])<br>
+          items2==> url= https://url-0-2-link  ; title= None<br>
+        name = list(items.keys()) 	==> ['page', 'urls_list']<br>
+        list(items.keys())[0] 		==> page<br>
+        items.get(name[0]) 		==> website1_url<br>
+        items.get(name[-1]) 		==> 2 [{'url': 'https://url-1-1-link', 'title': 'jakis tytul 1 1'}, {'url': 'https://url-1-2-link', 'title': 'jakis tytul 1 2'}]<br>
+          items2.keys() ==> dict_keys(['url', 'title'])<br>
+          items2==> url= https://url-1-1-link  ; title= jakis tytul 1 1<br>
+          items2.keys() ==> dict_keys(['url', 'title'])<br>
+          items2==> url= https://url-1-2-link  ; title= jakis tytul 1 2<br>
+        name = list(items.keys()) 	==> ['page', 'urls_list']<br>
+        list(items.keys())[0] 		==> page<br>
+        items.get(name[0]) 		==> website2_url<br>
+        items.get(name[-1]) 		==> 2 [{'url': 'https://url-2-1-link', 'title': 'tytul 2 1'}, {'url': 'https://url-2-2-link', 'title': 'tutul 2 2'}]<br>
+          items2.keys() ==> dict_keys(['url', 'title'])<br>
+          items2==> url= https://url-2-1-link  ; title= tytul 2 1<br>
+          items2.keys() ==> dict_keys(['url', 'title'])<br>
+          items2==> url= https://url-2-2-link  ; title= tutul 2 2<br>
+          
+      <br>
+
+      set1 = set('zero'); set1.add(1); set1.add(1); set1.add('trzy')<br>
+      len(set1): 7 {1, 2, 'trzy', 'r', 'z', 'o', 'e'}<br>
+      set2 = (); set2.add(0); set2.add(1); set2.add(2); set2.add(3)<br>
+      len(set2): 4 {0, 1, 2, 3}<br>
+      set3 = set1.difference(set2) 		-> {'trzy', 'r', 'z', 'o', 'e'}<br>
+      set3 = set1.intersection(set2) 		-> {1, 2}<br>
+      set3 = set1.symmetric_difference(set2) 	-> {0, 'trzy', 3, 'r', 'z', 'o', 'e'}<br>
+      set3.clear() 		-> None<br>
+      list1.extend( {0, 1, 2, 3} ) -> ['zero', 'one', 0, 1, 2, 3]<br>
+
+      <br/>
+      Python tuple functions:<br>
+      1	cmp(tuple1, tuple2) - Compares elements of both tuples.<br>
+      2	len(tuple) - Gives the total length of the tuple.<br>
+      3	max(tuple) - Returns item from the tuple with max value.<br>
+      4	min(tuple) - Returns item from the tuple with min value.<br>
+      5	tuple(seq) - Converts a list into tuple.<br>
+      <br>
+      my_tuple = ()<br/>
+      len(my_tuple) 4 			-> ('zero', 2, ['test', 5], 'trzy')<br/>
+      a,b,c,d = my_tuple		-> zero 2 ['test', 5] trzy<br/>
+      my_tuple[1];my_tuple[-2] 	-> 2 ['test', 5]<br/>
+      my_tuple[2][1];my_tuple[1:3]	-> 5 (2, ['test', 5])<br/>
+      my_tuple[2][0] = 'testowy'	-> testowy<br/>
+      c 				-> ['testowy', 5]<br/>
+      tuple2 = ('repeat',)*3		-> ('repeat', 'repeat', 'repeat')<br/>
+      tuple3 = my_tuple+tuple2 	-> ('zero', 2, ['testowy', 5], 'trzy', 'repeat', 'repeat', 'repeat')<br/>
+      tuple3.count('repeat') 		-> 3<br/>
+      my_tuple.index('trzy') 		-> 3<br/>
+      del my_tuple<br/>
+
+      <br />
+      Python dictionary functions:<br />
+      1 cmp(dict1, dict2) - Compares elements of both dict.<br />
+      2 len(dict) - Gives the total length of the dictionary. This would be equal to the number of items in the dictionary.<br />
+      3 str(dict) - Produces a printable string representation of a dictionary<br />
+      4 type(variable) - Returns the type of the passed variable. If passed variable is dictionary, then it would return a dictionary type.<br />
+      <br />
+      Python dictionary methods:<br />
+      1 dict.clear() - Removes all elements of dictionary dict<br />
+      2 dict.copy() - Returns a shallow copy of dictionary dict<br />
+      3 dict.fromkeys() - Create a new dictionary with keys from seq and values set to value.<br />
+      4 dict.get(key, default=None) - For key key, returns value or default if key not in dictionary<br />
+      5 dict.has_key(key) - Returns true if key in dictionary dict, false otherwise<br />
+      6 dict.items() - Returns a list of dict's (key, value) tuple pairs<br />
+      7 dict.keys() - Returns list of dictionary dict's keys<br />
+      8 dict.setdefault(key, default=None) - Similar to get(), but will set dict[key]=default if key is not already in dict<br />
+      9 dict.update(dict2) - Adds dictionary dict2's key-values pairs to dict<br />
+      10 dict.values() - Returns list of dictionary dict's values<br />
+    </div>
+  </div>
+</body>
+</html>
+
+
+lista = ['x','y','z','b','z','y','a']
+
+print('lista',len(lista),'\t\t\t->',lista)
+print('set(lista) \t\t\t->',set(lista))
+print('lista',len(lista),'\t\t\t->',lista)
+print('sorted(lista)',len(lista),' \t\t->',sorted(lista))
+print('lista',len(lista),'\t\t\t->',len(lista),lista)
+print('set(sorted(lista))',len(set(sorted(lista))),' \t\t->',set(sorted(lista)))
+print('lista',len(lista),' \t\t\t->',lista)
+l2 = lista.copy()
+print('l2 = lista.copy()',len(l2),' \t\t->',l2)
+l2.reverse()
+print('l2.reverse()',len(l2),' \t\t->',l2.reverse())
+print('lista',len(lista),' \t\t\t->',lista)
+print('lista.count(\'z\') \t\t->',lista.count('z'))
+print('lista.extend(l2) \t\t->',lista.extend(l2))
+l2.clear()
+print('l2.clear()',len(l2),' \t\t\t->',l2)
+print('lista',len(lista),'\t\t\t->',lista)
+print('lista.index(\'z\') \t\t->',lista.index('z'))
+print('lista',len(lista),'\t\t\t->',lista)
+print('lista.insert(poz,\'ABC\') \t->',lista.insert(1,'ABC'))
+print('lista',len(lista),'\t\t\t->',lista)
+print('lista.pop(3) \t\t\t->',lista.pop(3),lista)
+print('lista',len(lista),'\t\t\t->',lista)
+print('lista.remove(\'ABC\')\t\t->',lista.remove('ABC'),lista)
+print('lista',len(lista),'\t\t\t->',lista)
+print('lista.sort()',len(lista),'\t\t->',lista.sort())
+print('lista',len(lista),'\t\t\t->',lista)
+def myFunc(e):
+  return e['year']
+
+cars = [
+  {'car': 'Ford', 'year': 2005},
+  {'car': 'Mitsubishi', 'year': 2000},
+  {'car': 'BMW', 'year': 2019},
+  {'car': 'VW', 'year': 2011}
+]
+str_many_lines = """
+# string wieloliniowy w 1 zmiennej
+def myFunc(e):
+  return e['year']
+
+cars = [
+  {'car': 'Ford', 'year': 2005},
+  {'car': 'Fiat', 'year': 2000},
+  {'car': 'BMW', 'year': 2019},
+  {'car': 'VW', 'year': 2011}
+]
+"""
+print(str_many_lines)
+cars.sort(key=myFunc)
+print('cars.sort(key=myFunc) \n\t->',cars)
+cars.sort(reverse=True,key=myFunc)
+print('cars.sort(reverse=True,key=myFunc) \n\t->',cars)

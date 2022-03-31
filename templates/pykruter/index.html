@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html>
+<head>
+  <style>
+    .next_question {
+      background-color: cornflowerblue;
+      color: aliceblue;
+      padding: 8px;
+      font-size: x-large;
+      border-style: none;
+      display: block;
+      cursor: pointer;
+    }
+    .butt_answer {
+      /*color: #006cff00;*/
+      background-color: aliceblue;
+      padding: 8px;
+      font-size: x-large;
+    }
+  </style>
+  <link rel="stylesheet" href="static/css/pykruter.css" />
+</head>
+
+<body>
+  <div style="position:fixed;top:calc(50% - 250px);width:100%;">
+    <div class="counter">
+      <div class="nums">
+        <span class="in">3</span>
+        <span>2</span>
+        <span>1</span>
+        <span>0</span>
+      </div>
+      <h4>Czas start</h4>
+    </div>
+
+    <div style="position:static;text-align:center;margin-bottom:10px;font-size:xx-large;top:15%;">
+      {{question}}
+      <div id="answer" class="answer"> {{answer}} </div>
+    </div>
+    
+
+    <div class="final">
+      <button class="next_question" onclick="window.location.href=window.location.pathname">Następne pytanie</button>
+      <button id="show_answer">
+        <span>Pokaż odpowiedź</span>
+      </button>
+    </div>
+    <script src="static/js/pykruter.js"></script>
+  </div>
+
+</body>
+</html>
