@@ -2,7 +2,8 @@ from flask import Flask, render_template, url_for, redirect
 from flask import request
 import json
 from app_files.py_terminal_app_run import runAppInsideScript
-from app_files.moje_biblioteki import mainPageMenuList, get_urls_list, get_urls_tags_list, update_urls_in_json_file, check_password, get_urls_tags_count_list
+from app_files.moje_biblioteki import mainPageMenuList
+from app_files.przydatne_linki import get_urls_list, get_urls_tags_list, update_urls_in_json_file, check_password, get_urls_tags_count_list
 from app_files.password_generator import password_generator
 from app_files.random_python_code import showRandomPythonCode
 from app_files.pykruter import random_question_from_csv
