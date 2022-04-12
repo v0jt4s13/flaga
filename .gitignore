@@ -1,4 +1,5 @@
 app_files/__pycache__/*
+app_files/secret*
 __pycache__/*
 *.log
 *.backup*
