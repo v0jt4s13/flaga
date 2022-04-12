@@ -1,0 +1,111 @@
+[
+    {
+        "url": "https://learngitbranching.js.org/?locale=pl",
+        "opis": "Naucz si\u0119 branchingu",
+        "tagi": [
+            "GIT"
+        ]
+    },
+    {
+        "url": "https://favtutor.com/blogs/string-to-dict-python",
+        "opis": "String to dictionary",
+        "tagi": [
+            "Python",
+            "String",
+            "Dictionary"
+        ]
+    },
+    {
+        "url": "https://docs.rackspace.com/support/how-to/block-an-ip-address-on-a-Linux-server/",
+        "opis": "Block an IP address on a Linux server",
+        "tagi": [
+            "Server",
+            "Linux",
+            "Security"
+        ]
+    },
+    {
+        "url": "https://www.educba.com/linux-jq/",
+        "opis": "Linux jq - json",
+        "tagi": [
+            "Linux",
+            "json"
+        ]
+    },
+    {
+        "url": "https://www.tutorialguruji.com/python/flask-jinja2-parse-json/",
+        "opis": "Flask ninja",
+        "tagi": [
+            "Python",
+            "Flask",
+            "ninja",
+            "json"
+        ]
+    },
+    {
+        "url": "https://colab.research.google.com/drive/1yrS6E2oafvGeO5AITlrar_amJL3WoQHd#scrollTo=FGCW4tJQn7-P",
+        "opis": "Codelabs testy pythona",
+        "tagi": [
+            "Codelabs",
+            "cooperate",
+            "Python"
+        ]
+    },
+    {
+        "url": "https://webrtc.github.io/samples/src/content/getusermedia/getdisplaymedia/",
+        "opis": "Screen sharing WebRTC getDisplayMedia",
+        "tagi": [
+            "WebRTC",
+            "Screen",
+            "Sharing",
+            "javaScript",
+            "DisplayMedia"
+        ]
+    },
+    {
+        "url": "https://docs.python.org/3/library/tkinter.html",
+        "opis": "Python Tkinker - interface to the Tcl/Tk GUI toolkit",
+        "tagi": [
+            "Python",
+            "Screen",
+            "library",
+            "GUI"
+        ]
+    },
+    {
+        "url": "https://www.programcreek.com/python/index/module/list",
+        "opis": "Top pythons API",
+        "tagi": [
+            "Python",
+            "API"
+        ]
+    },
+    {
+        "url": "https://overiq.com/flask-101/basics-of-jinja-template-language/",
+        "opis": "Basics of Jinja Template Language",
+        "tagi": [
+            "Flask",
+            "Jinja",
+            "Templates",
+            "Python"
+        ]
+    },
+    {
+        "url": "https://www.tutorialspoint.com/python/",
+        "opis": "Python Tutorial",
+        "tagi": [
+            "Python",
+            "Tutorial"
+        ]
+    },
+    {
+        "url": "https://dateutil.readthedocs.io/en/stable/",
+        "opis": "Dateutil - powerful extensions to datetime",
+        "tagi": [
+            "Python",
+            "linbrary",
+            "datetime",
+            "Tutorial"
+        ]
+    }
+]
