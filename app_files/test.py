@@ -1,5 +1,5 @@
 import json, os
-from moje_biblioteki import mainPageMenuList, get_urls_list, check_password, update_urls_in_json_file, get_urls_tags_list
+from przydatne_linki import get_urls_list, check_password, update_urls_in_json_file, get_urls_tags_list
 
 def get_urls_list(out_type):
 	print('get_urls_list:',out_type)

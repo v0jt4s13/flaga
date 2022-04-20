@@ -1,7 +1,11 @@
 import json
 import os
-from app_files.secret import get_pass
-
+try:
+	from app_files.secret import get_pass
+	from app_files.moje_biblioteki import saveJsonStringToFile
+except:
+	from secret import get_pass
+	from moje_biblioteki import saveJsonStringToFile
 
 def get_urls_tags_count_list():
 	urls_json = get_urls_list('json')

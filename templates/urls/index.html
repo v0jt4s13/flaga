@@ -5,16 +5,37 @@
 		<head>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 			<script>
+				function parse_response_json(data) {
+					const text = data;
+					const obj = JSON.parse(text);
+					var err_nr = obj.err_nr;
+					var message = obj.message;
+					const arrJson = '["'+obj.err_nr+'","'+obj.message+'"]'
+					const return_array = JSON.parse(arrJson)
+					return return_array
+				}
 				$(document).ready(function(){
+					$('#server-resp').html('<span>w:'+screen.width+' x h:'+screen.height+'</span>')
 					var max_tag_count = parseInt('{{max_tag_count}}');
+					if (screen.width > 1000) {
+						var max_font_size = 16
+						var font_size_format = "px"
+					} else {
+						var max_font_size = 6
+						var font_size_format = "vw"
+					}
+					var dzielnik = max_tag_count/max_font_size
+					
 					var tags_count = parseInt('{{tags_count}}');
 					$('.tag_href').each(function() {
-						console.log('inside tag_href')
 						var tag_count = $(this).data('tag-count')
-						console.log('tag_count='+tag_count)
-						new_size = 14+tag_count
-						console.log('new_size='+new_size)
-						$(this).css("font-size", new_size+"px");
+						if (screen.width > 1000) {
+							new_size = (tag_count/dzielnik)+10
+						} else {
+							new_size = tag_count/dzielnik
+						}
+						/*console.log('tag_count='+tag_count+' ==> new_size='+new_size)*/
+						$(this).css("font-size", new_size+font_size_format);
 					});
 					$('#save-url').click(function() { 
 						var url = $('#url').val();
@@ -26,18 +47,24 @@
 						} else {
 							console.log(url.substring(0, 4)+' url='+url+' opis='+opis)
 							if (url.substring(0, 4) == 'http' && url != "" && opis != "") {
-								$.post('urls', { url_str:url, opis_str:opis, pass_str:pass, tagi_str:tagi }, function(data) {
-									$('#server-resp').html(data);	
-									console.log('Wyslane. '+data);
+								$.post('urls/add', { url_str:url, opis_str:opis, pass_str:pass, tagi_str:tagi }, function(data) {
+									message = parse_response_json(data)[1]
+									err_nr = parse_response_json(data)[0]
+									console.log('Wyslane. '+parse_response_json(data));
+									if (err_nr=="1") {
+										$('.server-resp').attr('color','red')
+									}
+									$('#server-resp').html(message);
+									console.log('Wyslane. '+err_nr);
 								})
 								.done(function() {
-									console.log( "second success" );
+									console.log( 'na mur beton' );
 								})
 								.fail(function(jqXHR, textStatus, errorThrown) {
 									console.log( "error" + jqXHR.responseText);
 								})
 								.always(function() {
-									console.log( "finished" );
+									console.log( "done" );
 								});
 								return false; // prevent default
 							} else {
@@ -57,29 +84,51 @@
 				}
 				a {
 					color: lightskyblue;
+					text-decoration: none;
 				}
+				a.href-list {
+					display: block;
+				}
+/*				a, a:link, a:visited, a:active, a:hover {
+					color: #1a73e8;
+					text-decoration: none;
+				} */
 				.main-wrapper {
-					width: 90%;
-					max-width: 900px;
+					max-width: 800px;
 					background-color: #38444d;
-					position: absolute;
+					position: relative;
     			top: 10px;
     			left: 50%;
-    			transform: translate(-50%, 0%);
+    			transform: translate(-45%, 0%);
 					padding: 10px;
 				}
-				span.h1 {
+				div.h1 {
 					text-shadow: -3px 0px 8px #000000ab;
 					font-family: "Segoe UI",Arial,sans-serif;
     			font-weight: 400;
 					font-size: xx-large;
 				}
-				p.tags-cloud {
-					font-size: small;
+				.tags-cloud {
+					position: relative;
+					width: 80%;
+					padding: 10px;
+					background-color: #211f33;
+					z-index: 10;
+					margin-left: auto;
+					margin-right: auto;
 				}
 				.tags-cloud a {
 					font-size: small;
 					padding-right: 4px;
+				}
+				.urls-list {
+					font-size: 5vw;
+					line-height: 2;
+					display: inline-block;
+				}
+				.tags-list {
+					font-size: 3vw;
+    			display: block;
 				}
 				.link-field {
 					padding-top: 20px;
@@ -87,38 +136,11 @@
 					width: fit-content;
 					margin-left: auto;
 					margin-right: auto;
-					line-height: 1.5;
 				}
 				.form-field {
 					text-align: center;
 					padding-top: 30px;
 					font-size: large;
-				}
-				.url-input {
-					color: white;
-    			background-color: rgb(40,44,52);
-					font-size: small;
-					width: 450px;
-					text-align: center;
-					padding: 5px;
-					margin-top: 10px;
-				}
-				.pass-input {
-					color: white;
-    			background-color: rgb(40,44,52);
-					font-size: small;
-					width: 50px;
-					text-align: center;
-					padding: 5px;
-				}
-				.url-submit {
-					color: #FFFFFF;
-					background-color: #132014;
-					font-size: large;
-					width: 120px;
-					text-align: center;
-					padding: 5px;
-					margin-top: 10px;
 				}
 				.question-answer {
 					font-size: xx-large;
@@ -140,40 +162,137 @@
 					padding: 2vh; 
 					margin: 1vh -5vw;
 				}
+				@media screen and (min-width: 200px) {
+					div.mob-h1 {
+						font-size: 9vw;
+						max-width: 100%;
+					}
+					.tags-list {
+						font-size: 3vw;
+						display: block;
+						text-decoration: none;
+						color: aliceblue;
+						text-align: right;
+						padding-right: 7vw;
+					}
+					.url-input {
+						color: white;
+						background-color: rgb(40,44,52);
+						width: 90%;
+						text-align: center;
+						padding: 5px;
+						margin-top: 10px;
+						font-size: 4vw;
+					}
+					.url-submit {
+						color: #FFFFFF;
+						background-color: #132014;
+						width: 250px;
+						text-align: center;
+						padding: 10px;
+						margin-top: 10px;
+						font-size: 4vw;
+					}
+				}
+				@media screen and (min-width: 1000px) {
+					div.mob-h1 {
+						font-size: 5em;
+    				max-width: 100%;
+					}
+					.tags-cloud {
+						position: sticky;
+						left: 0px;
+						top: 20px;
+						width: 100px;
+						border: 3px solid #fa7a0c;
+						padding: 10px;
+						background-color: #211f33;
+						z-index: 10;
+						float: left;
+					}
+					.main-wrapper {
+						max-width: 800px;
+						background-color: #38444d;
+						position: relative;
+						top: 10px;
+						padding: 10px;
+					}
+					.link-field {
+						padding-top: 20px;
+			    	text-align: left;
+    				width: fit-content;
+					}
+					.urls-list {
+						font-size: 18px;
+    				line-height: 2;
+						width: 100%;
+					}
+					.tags-list {
+    				font-size: 14px;
+						padding-right: 5px;
+					}
+					.url-input {
+						color: white;
+						background-color: rgb(40,44,52);
+						font-size: small;
+						width: 450px;
+						text-align: center;
+						padding: 5px;
+						margin-top: 10px;
+					}
+					.pass-input {
+						color: white;
+						background-color: rgb(40,44,52);
+						font-size: small;
+						width: 50px;
+						text-align: center;
+						padding: 5px;
+					}
+					.url-submit {
+						color: #FFFFFF;
+						background-color: #132014;
+						font-size: large;
+						width: 120px;
+						text-align: center;
+						padding: 5px;
+						margin-top: 10px;
+					}
+				}
 			</style>
 			</head>
 			<body>
+				<div class="tags-cloud">
+					{% for key, value in tags.items() %}
+						{% if value['odd_even'] == "odd" %}
+							<a href="?tag={{ key }}" style="text-decoration: overline;" class="tag_href" data-tag-count="{{value['count']}}">{{ key }}</a>
+						{% else %}
+							<a href="?tag={{ key }}" style="text-decoration: none;" class="tag_href" data-tag-count="{{value['count']}}">{{ key }}</a>
+						{% endif %}
+					{% endfor %}
+				</div>
 				<div class="main-wrapper">
 					
 					<div class="link-field">
 
-						<span class="h1">Przydatne linki</span>
-						<p class="tags-cloud">
-							{% for key, value in tags.items() %}
-								{% if value['odd_even'] == "odd" %}
-									<a href="?tag={{ key }}" style="text-decoration: overline;" class="tag_href" data-tag-count="{{value['count']}}">{{ key }}</a>
-								{% else %}
-									<a href="?tag={{ key }}" style="text-decoration: none;" class="tag_href" data-tag-count="{{value['count']}}">{{ key }}</a>
-								{% endif %}
+						<div class="h1 mob-h1">Przydatne linki</div>
+						<div class="urls-list">
+							{% for x in items%}
+								<a href="{{ x['url'] }}" class="href-list" target="_blank"><span class="href-list">{{ x['opis'] }}</span> <span class="tags-list">{{ x['tagi'] }}</span></a>
 							{% endfor %}
-						</p>
-
-						{% for x in items%}
-
-							<a href="{{ x['url'] }}" target="_blank">{{ x['opis'] }}</a> {{ x['tagi'] }}<br />
-
-						{% endfor %}
+						</div>
 						<div class="form-field">
-							<input type="text" name="url" id="url" class="url-input" placeholder="adres url strony" value=""><br />
-							<input type="text" name="opis" id="opis" class="url-input" placeholder="opis strony" value=""><br />
-							<input type="text" name="tagi" id="tagi" class="url-input" placeholder="lista tagów dla strony odzielona spacjami lub przecinkami" value=""><br />
-							<br /><input type="password" name="pass" id="pass" class="pass-input" placeholder="haslo" style="width: 100px"><br />
-							<div id="server-resp" class="server-resp" style="float:left;">{{return_resp}}</div>
-							<input type="submit" value="Dodaj link" id="save-url" class="url-submit">
-							<br /><span style="font-size:small">{{date_part}}</span>
+							<div>
+								<input type="text" name="url" id="url" class="url-input" placeholder="adres url strony" value=""><br />
+								<input type="text" name="opis" id="opis" class="url-input" placeholder="opis strony" value=""><br />
+								<input type="text" name="tagi" id="tagi" class="url-input" placeholder="lista tagów dla strony odzielona spacjami lub przecinkami" value=""><br />
+								<br /><input type="password" name="pass" id="pass" class="pass-input" placeholder="haslo" style="width: 100px"><br />
+								<input type="submit" value="Dodaj link" id="save-url" class="url-submit">
+								<br /><span style="font-size:small">{{date_part}}</span>
+							</div>
+							<div id="server-resp" class="server-resp" tyle="float:left;"> {{return_resp}}</div>
 						</div>
 					</div>
-					
+
 				</div>
 			</body>
 	</html>

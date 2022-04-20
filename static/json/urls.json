@@ -107,5 +107,167 @@
             "datetime",
             "Tutorial"
         ]
+    },
+    {
+        "url": "https://www.netflix.com/browse/genre/5685",
+        "opis": "Netflix strona z filmami wg kategorii",
+        "tagi": [
+            "Rozrywka",
+            "Netflix",
+            "film"
+        ]
+    },
+    {
+        "url": "https://github.com/faucamp/python-gsmmodem",
+        "opis": "GSM modem module for Python",
+        "tagi": [
+            "Python",
+            "GSM",
+            "library",
+            "github"
+        ]
+    },
+    {
+        "url": "https://m.youtube.com/watch?v=r0l_54thSYU&list=PLic5CsuY2S8nm_H8cQuNdT_hFzfRfGgqD&index=18",
+        "opis": "Wireshark - packet sniffing program",
+        "tagi": [
+            "YT",
+            "Wireshark",
+            "network",
+            "lan"
+        ]
+    },
+    {
+        "url": "https://www.tutsmake.com/",
+        "opis": "Baza wiedzy, Python, jquery i wiele innych",
+        "tagi": [
+            "Tutorial",
+            "Python",
+            "jquery"
+        ]
+    },
+    {
+        "url": "https://www.tutorialrepublic.com/faq/how-to-loop-through-elements-with-the-same-class-in-jquery.php",
+        "opis": "Jquery loop na class",
+        "tagi": [
+            "Tutorial",
+            "jquery",
+            "CSS"
+        ]
+    },
+    {
+        "url": "https://pythonexamples.org/python-datetime-format/",
+        "opis": "Format Datetime in Python",
+        "tagi": [
+            "Python",
+            "datetime"
+        ]
+    },
+    {
+        "url": "https://www.youtube.com/watch?v=Y-9kVF6bWr4&t=1374s",
+        "opis": "HLS Streaming Server with NGINX",
+        "tagi": [
+            "Video",
+            "sreaming",
+            "nginx"
+        ]
+    },
+    {
+        "url": "https://stackoverflow.com/questions/12720967/how-to-change-postgresql-user-password",
+        "opis": "Postgresql - change the user password",
+        "tagi": [
+            "Postgresql",
+            "Password",
+            "User",
+            "Change"
+        ]
+    },
+    {
+        "url": "https://pythonspot.com/create-a-chrome-plugin-with-python/",
+        "opis": "Create a chrome plugin with Python",
+        "tagi": [
+            "Python",
+            "extension",
+            "chrome",
+            "plugin"
+        ]
+    },
+    {
+        "url": "https://colab.research.google.com/github/ZPXD/zajecia_programowania_xd/",
+        "opis": "Codelabs - ZPXD - klocki w yupiterze",
+        "tagi": [
+            "Codelabs",
+            "ZPXD",
+            "klocki",
+            "yupiter"
+        ]
+    },
+    {
+        "url": "https://www.freecodecamp.org/",
+        "opis": "Learn programming for free page",
+        "tagi": [
+            "Tutorial",
+            "Python",
+            "Learn",
+            "programming"
+        ]
+    },
+    {
+        "url": "https://codehandbook.org/working-with-json-in-python-flask/",
+        "opis": "Working with JSON in Python Flask",
+        "tagi": [
+            "Flask",
+            "Jinja",
+            "Templates",
+            "Python"
+        ]
+    },
+    {
+        "url": "https://github.com/theopolisme/webcam-streamer",
+        "opis": "USB webcam streaming",
+        "tagi": [
+            "Python",
+            "Flask",
+            "webcam",
+            "Streaming"
+        ]
+    },
+    {
+        "url": "https://devenum.com/how-to-remove-duplicates-list-of-python-dictionaries/",
+        "opis": "Remove duplicate from list",
+        "tagi": [
+            "Python",
+            "list",
+            "dictionary"
+        ]
+    },
+    {
+        "url": "https://www.cyberciti.biz/faq/howto-use-ps-kill-nice-killall-to-manage-processes-in-freebsd-unix/",
+        "opis": "Menage process in Linux: ps, kill, killall",
+        "tagi": [
+            "Linux",
+            "process",
+            "ps",
+            "kill"
+        ]
+    },
+    {
+        "url": "https://www.codewars.com/?language=python",
+        "opis": "Codewars - skills training",
+        "tagi": [
+            "Python",
+            "Learn"
+        ]
+    },
+    {
+        "url": "https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-uploading-files.html",
+        "opis": "Boto3 - Amazon S3 library",
+        "tagi": [
+            "Python",
+            "Amazon",
+            "S3",
+            "library",
+            ""
+        ]
     }
 ]

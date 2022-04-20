@@ -2,36 +2,35 @@ from flask import Flask, render_template, url_for, redirect
 from flask import request
 import json
 from app_files.py_terminal_app_run import runAppInsideScript
-from app_files.moje_biblioteki import mainPageMenuList
+from app_files.moje_biblioteki import mainPageMenuList, get_client_ip
 from app_files.przydatne_linki import get_urls_list, get_urls_tags_list, update_urls_in_json_file, check_password, get_urls_tags_count_list
 from app_files.password_generator import password_generator
 from app_files.random_python_code import showRandomPythonCode
 from app_files.pykruter import random_question_from_csv
 from datetime import datetime
+from os import path, walk
 
 app=Flask(__name__)
 # source flagaenv/bin/activate
 # deactivate
-
 
 import logging
 import logging.handlers
 import time
 
 def log_setup():
-  log_file_name = "output.log"
-  log_handler = logging.handlers.WatchedFileHandler('output.log')
-  formatter = logging.Formatter(
-      '%(asctime)s program %(clientip)-15s [%(process)d]: %(message)s',
-      '%b %d %H:%M:%S')
-  formatter.converter = time.gmtime  # if you want UTC time
-  log_handler.setFormatter(formatter)
-  logger = logging.getLogger()
-  logger.addHandler(log_handler)
-  logger.setLevel(logging.DEBUG)
+	log_file_name = "output.log"
+	log_handler = logging.handlers.WatchedFileHandler('output.log')
+	formatter = logging.Formatter( 
+	    '%(asctime)s program [%(process)d]: %(message)s',
+	    '%b %d %H:%M:%S')
+	
+	formatter.converter = time.gmtime  # if you want UTC time
+	log_handler.setFormatter(formatter)
+	logger = logging.getLogger()
+	logger.addHandler(log_handler)
+	logger.setLevel(logging.DEBUG)
 log_setup()
-
-
 
 @app.route('/')
 def index():
@@ -39,7 +38,7 @@ def index():
 	text = open('domain.txt').read()
 	li_list = mainPageMenuList()
 	#random_python_code_list = showRandomPythonCode()
-	
+	logging.info('== / - wizyta na stronie glownej')
 	#method_list, name_list, syntax_list, parameters_list, use_examples_list = getRandomPythonExampleCode('html')
 	return render_template("index.html", text=text, li_list=li_list) #, random_python_code_list=random_python_code_list)
 
@@ -89,7 +88,7 @@ def xd():
 	text = open('domain.txt').read()
 	inny_text = "żółć, ślęża, błąd"
 	return render_template("xd.html", text='http://'+text.strip(), inny_text=inny_text)
-  
+	
 @app.route('/doc')
 def doc():
 	text = open('domain.txt').read()
@@ -160,7 +159,7 @@ def py_command():
 
 @app.route('/cam')
 def py_cam():
-  return render_template("cam.html")
+	return render_template("cam.html")
 
 @app.route('/pykruter')
 def pykruter():
@@ -171,53 +170,62 @@ def pykruter():
  
 	return render_template("pykruter/index.html", question=str(question), answer_list=answer_list)
 
-@app.route('/urls', methods = ['POST','GET'])
-def urls():
+@app.route('/urls/add', methods = ['POST','GET'])
+def urls_add():
 	pass_str = ""
 	return_resp = ""
-	add = ""
-	now = datetime.now()
-	date_part = now.strftime('%Y%m')+' '+now.strftime('%H')
+	# = ""
 	#return redirect(url_for('found', return_resp='return_resp'))
 	if request.method == 'POST':
 		pass_str = request.form['pass_str']
 		url_str = request.form['url_str']
 		opis_str = request.form['opis_str']
 		tagi_str = request.form['tagi_str']
-		logging.info('urls() ==> url:'+url_str+'; opis:'+opis_str+'; tagi:'+tagi_str)
+		#logging.info('urls() ==> url:'+url_str+'; opis:'+opis_str+'; tagi:'+tagi_str)
 		if check_password(pass_str,opis_str) == 'OK':
 			#logging.info('== urls - inside POST == przed update_urls_in_json_file')
 			return_resp+= update_urls_in_json_file(url_str,opis_str,tagi_str)
 			#logging.info('== urls - inside POST == update_urls_in_json_file resp:'+return_resp)
-			add = 'Url add succesyfull'
+			err_nr = 0
 		else:
 			logging.info('== urls - inside POST == pass:'+pass_str)
-			add = 'Url add fail'
-			return_resp+= "Błędne hasło"
+			err_nr = 1
+			return_resp = "Błędne hasło"
 
-		return render_template("urls/index.html", add=add, return_resp=return_resp, \
-		items=[], tags_count=0, max_tag_count=0, tags='', date_part=date_part)
+	return '{"err_nr":"'+str(err_nr)+'", "message":"'+return_resp+'"}'
+
+		#return render_template("urls/index.html", add=add, return_resp=return_resp, \
+		#items=[], tags_count=0, max_tag_count=0, tags='', date_part=date_part)
 		#return redirect(url_for('found', return_resp=return_resp))
 	#else:
 	#	return_resp+= "POST fail"
 
 
-	else:
-		items = get_urls_list('lista')
-		if 1 == 1:
-			tags_list = get_urls_tags_count_list() # 
-			max_tag_count = tags_list[0]
-			tags = tags_list[1]
-			tags_count = len(tags)
-		else:
-			tags = get_urls_tags_list('dict') #get_urls_tags_list()
-			max_tag_count = 10
-			tags_count = len(tags)
+@app.route('/urls', methods = ['POST','GET'])
+def urls():
 
-		return render_template("urls/index.html", add=add, return_resp=return_resp, \
+		return_resp = ""
+		items = get_urls_list('lista')
+		tags_list = get_urls_tags_count_list() # 
+		max_tag_count = tags_list[0]
+		tags = tags_list[1]
+		tags_count = len(tags)
+		now = datetime.now()
+		date_part = now.strftime('%Y%m')+' '+now.strftime('%H')
+
+		return render_template("urls/index.html", return_resp=return_resp, \
 		items=items, tags_count=tags_count, max_tag_count=max_tag_count, tags=tags, \
 		date_part=date_part)
 
+def flask_reload():
+    logging.info('== / - Flask reload!')
+
 if __name__=="__main__":
-  urls()
-  app.run()
+
+	from werkzeug.serving import run_simple
+	flask_reload()
+	
+	app.run()
+
+	#urls()
+	#app.run()

@@ -49,6 +49,54 @@ from xxlimited import new
 #   logger.setLevel(logging.DEBUG)
 #log_setup()
 
+def get_client_ip():
+	
+	def request_remote_addr():
+		ip_addr = request.remote_addr
+		return ip_addr
+	def client():
+		ip_addr = request.environ['REMOTE_ADDR']
+		return ip_addr
+	def proxy_client():
+		ip_addr = request.environ['HTTP_X_FORWARDED_FOR']
+		return ip_addr
+	def proxy_client():
+		ip_addr = request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
+		return ip_addr
+
+	ipn = 0
+	try:
+		ip_addr = set(request_remote_addr())
+		ipn+= 1
+	except:
+		pass
+	
+	try:
+		if ipn == 0:
+				ip_addr = set(client())
+		else:
+			ip_addr.add(client())
+	except:
+		pass
+
+	try:
+		if ipn == 0:
+				ip_addr = set(proxy_client())
+		else:
+			ip_addr.add(proxy_client())
+	except:
+		pass
+
+	try:
+		if ipn == 0:
+				ip_addr = set(proxy_client())
+		else:
+			ip_addr.add(proxy_client())
+	except:
+		pass
+
+	return ip_addr
+
 def mainPageMenuList():
 
 	menu_list = []
@@ -371,7 +419,7 @@ def saveJsonStringToFile(file_name,json_str):
 		print('* '*15)
 		print('* '*15,'Save json',file_name,json_str)
 		print('* '*15)
-  
+	
 		json_obj = json.dumps(json_str, indent = 4)
 		with open(file_name, "w") as outfile:
 			outfile.write(json_obj)
@@ -386,7 +434,7 @@ def convertListToJsonString(input_list="",extra_para=""):
 	wrap_json_list = ""
 	prep_json_str = ""
 	prep_json_list = []
-  
+	
 	if input_list == "":
 		input_list = ["Value1", "Value2", "Value3"]
 		append_new_list = []
@@ -409,7 +457,7 @@ def convertListToJsonString(input_list="",extra_para=""):
 			#print(yy,'==========')
 			#print(item)
 			#print(yy,'==========')
-   
+	 
 			if len(item) > 0:
 				xx = 0
 				
@@ -431,20 +479,20 @@ def convertListToJsonString(input_list="",extra_para=""):
 							val = item[xx][1][zz][1]
 
 							prep_json_str = {
-             		key:val
+						 		key:val
 							}
 							tmp_str_pun_list.append(prep_json_str)
 							zz+= 1
 						json_child = prep_json_str
 						#print('11==>',tmp_str_pun_list)
 						prep_json_list.append(tmp_str_pun_list)
-       
+			 
 					else:
 						key = item[xx][0]
 						val = item[xx][1]
 
 						prep_json_str = {
-            	key:val
+							key:val
 						}
 						prep_json_list.append(prep_json_str)
 
