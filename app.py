@@ -7,10 +7,13 @@ from app_files.przydatne_linki import get_urls_list, get_urls_tags_list, update_
 from app_files.password_generator import password_generator
 from app_files.random_python_code import showRandomPythonCode
 from app_files.pykruter import random_question_from_csv
+from app_files.translate import string_text, ltr_form
 from datetime import datetime
 from os import path, walk
+import random
 
 app=Flask(__name__)
+app.secret_key = 'app-py-pr-xd'
 # source flagaenv/bin/activate
 # deactivate
 
@@ -30,7 +33,7 @@ def log_setup():
 	logger = logging.getLogger()
 	logger.addHandler(log_handler)
 	logger.setLevel(logging.DEBUG)
-log_setup()
+#log_setup()
 
 @app.route('/')
 def index():
@@ -38,7 +41,7 @@ def index():
 	text = open('domain.txt').read()
 	li_list = mainPageMenuList()
 	#random_python_code_list = showRandomPythonCode()
-	logging.info('== / - wizyta na stronie glownej')
+	#logging.info('== / - wizyta na stronie glownej')
 	#method_list, name_list, syntax_list, parameters_list, use_examples_list = getRandomPythonExampleCode('html')
 	return render_template("index.html", text=text, li_list=li_list) #, random_python_code_list=random_python_code_list)
 
@@ -47,6 +50,9 @@ def index():
 def newspage():
 	return render_template("newspage.html")
 
+#@app.route('/translated-to-ukrainien')
+#def uk_translated():
+#	return render_template("index.html")
 
 @app.route('/rpc')
 def rpc():
@@ -217,15 +223,84 @@ def urls():
 		items=items, tags_count=tags_count, max_tag_count=max_tag_count, tags=tags, \
 		date_part=date_part)
 
-def flask_reload():
-    logging.info('== / - Flask reload!')
+@app.route('/video')
+def video():
+	#return 'abc'
+	return render_template("index.html")
+
+
+@app.route('/translator', methods=["GET", "POST"])
+def translate(text_to_translate='',lang_from='',lang_to=''):
+	#logging.info('11111111111111111')
+	yt = ''
+	text_translated = ''
+	form = ltr_form()
+
+	if request.method == 'GET':
+		#logging.info('2222222222222222222')
+		try:
+			text_to_translate = request.args.get('ltr_textarea')
+			lang_from = request.args.get('ltr_lang_from')
+			lang_to = request.args.get('ltr_lang_to')
+			yt = request.args.get('yt')
+			text_translated = string_text(text_to_translate,lang_from,lang_to)
+		except:
+			pass
+
+	if request.method == 'POST':
+		#logging.info('request method == POST')
+		try:
+			lang_from = form.ltr_lang_from.data
+			lang_to = form.ltr_lang_to.data
+			text_to_translate = form.ltr_textarea.data
+			text_translated = string_text(text_to_translate,lang_from,lang_to)
+		except ValueError as e:
+			#logging.info('POST Error')
+			try:
+				text_translated = e
+			except:
+				text_translated = 'BŁĄÐ'
+
+	#logging.info('5555555555555555')
+	
+	if not form.ltr_textarea.data:
+		#logging.info('6666666666666')
+		form.ltr_textarea.data = ''
+
+	#if not text_translated:
+	if form.validate_on_submit():
+		#logging.info('if form.validate_on_submit()')
+		ltr_textarea = form.ltr_textarea.data
+		ltr_lang_from = form.ltr_lang_from.data
+		ltr_lang_to = form.ltr_lang_to.data
+		yt = form.yt.data
+		#output_data = '{}\n\n'.format(ltr_textarea)
+		#save_data(output_data)
+		ytl = yt.split('=')
+		yt = ytl[-1]
+		if not yt:
+			ytl = ['xM5LrjHPgnI','rxDxuATpZrA','no660i3aIsc','cXYdqalrrRk','CbMoTLmq3Do','JdfSvYkEArc','6tOuW8m08EU','ti5dboE4Iyo']
+			yt = ytl[random.randrange(0,len(ytl)-1)]
+		
+		#return redirect( url_for("translate", ltr_textarea=ltr_textarea, ltr_lang_from=ltr_lang_from, ltr_lang_to=ltr_lang_to, yt=yt, ytl=ytl) )
+		#logging.info('return render_template ==> 11111')
+		return render_template("translator/index.html", met=request.method, form=form, text_translated=text_translated, \
+																										ltr_textarea=ltr_textarea, ltr_lang_from=ltr_lang_from, ltr_lang_to=ltr_lang_to, yt=yt)
+	#logging.info('return render_template ==> 22222')	
+	return render_template("translator/index.html", form=form, text_translated=text_translated, yt=yt)
+
+
+# Errors
+@app.errorhandler(404)
+def handle_404(e):
+		return render_template('404.html'), 404
+@app.errorhandler(500)
+def handle_500(e):
+		return render_template('500.html'), 500
 
 if __name__=="__main__":
 
-	from werkzeug.serving import run_simple
-	flask_reload()
-	
-	app.run()
+	app.run(debug=True)
 
 	#urls()
 	#app.run()
