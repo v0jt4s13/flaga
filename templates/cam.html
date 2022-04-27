@@ -1,5 +1,6 @@
-<html>
-<head>
+{% extends "base.html" %}
+
+{% block content %}
 <script>
 async function takePhoto(quality) {
   const div = document.createElement('div');
@@ -36,11 +37,103 @@ quality=0.8;
 takePhoto({}) //.format(quality)
 
 </script>
-</head>
-<body>
   <div>
     <button>Capture</button>
     <video style="display: block;"></video>
   </div>
-</body>
-</html>
+
+
+
+  <div>
+    Test streaming url: https://python-programming.marzec.eu/hls/stream.m3u8<br />
+    rtpm://python-programming.marzec.eu/show
+  </div>
+		<!-- CSS  -->
+    <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet">
+
+
+    <!-- HTML -->
+    <video id='hls-example'  class="video-js vjs-default-skin" width="400" height="300" controls>
+    <source type="application/x-mpegURL" src="https://python-programming.marzec.eu/hls/stream.m3u8">
+    </video>
+    
+    
+    <!-- JS code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+    <script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+    
+    <script>
+    var player = videojs('hls-example');
+    player.play();
+    </script>
+   
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/DvlyzDZDEq4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   
+   <p>
+    https://www.youtube.com/watch?v=Y-9kVF6bWr4&t=1374s
+    1  apt update
+    2  apt upgrade
+    3  uname -a
+    4  systemctl reboot
+    5  ls
+    6  git clone https://github.com/sergey-dryabzhinsky/nginx-rtmp-module.git
+    7  sudo apt install build-essencial libpcre3 libpcre3-dev libssl-dev
+    8  sudo apt install build-essential libpcre3 libpcre3-dev libssl-dev
+    9  ls -la
+   10  pwd
+   11  mv nginx-rtmp-module /root/
+   12  cd /root/
+   13  ls -la
+   14  clear
+   15  ls -l
+   16  wget https://nginx.org/download/nginx-1.21.6.tar.gz
+   17  tar -xf nginx-1.21.6.tar.gz 
+   18  rm -fr nginx-1.21.6.tar.gz 
+   19  ls -l
+   20  cd nginx-1.21.6/
+   21  ./configure --with-http_ssl_module --add-module=../nginx-rtmp-module
+   22  apt install zlib1g zlib1g-dev
+   23  ./configure --with-http_ssl_module --add-module=../nginx-rtmp-module
+   24  make
+   25  make install
+   26  nano /usr/local/nginx/conf/nginx.conf
+   27  mv /usr/local/nginx/conf/nginx.conf /usr/local/nginx/conf/nginx.conf.original
+   28  cd /usr/local/nginx/conf/
+   29  ls -la
+   30  md5sum nginx.conf.default 
+   31  md5sum nginx.conf.original 
+   32  nano nginx.conf
+   33  /usr/local/nginx/sbin/nginx  -g 'daemon off;'
+   34  nano nginx.conf
+   35  /usr/local/nginx/sbin/nginx  -g 'daemon off;'
+   36  mkdir /nginx
+   37  mkdir /nginx/hls
+   38  cat /etc/passwd | grep nginx
+   39  chown -R www-data.www-data /nginx
+   40  ls -la /nginx/
+   41  /usr/local/nginx/sbin/nginx  -g 'daemon off;'
+   42  history
+
+   rtpm://python-programming.marzec.eu/show
+   https://python-programming.marzec.eu:8080/hls/stream.m3u8
+
+	  1  sudo su
+    2  cd /nginx/hls/
+    3  ls -la
+    4  sudo ss -ltn
+    5  ls -la
+    6  tail -f /var/log/lastlog 
+    7  tail -f /var/log/syslog 
+    8  tail -f /var/log/lastlog 
+    9  ls -l
+   10  sudo uwf list
+   11  sudo apt install uwf
+   12  ls -la
+   13  history
+   14  sudo su
+   15  history
+
+   </p>
+
+{% endblock %}

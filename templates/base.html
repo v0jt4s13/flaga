@@ -1,0 +1,93 @@
+<head>
+	<title>Page title</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+			background-color: #3c3c3c;
+    	color: antiquewhite;
+			font-size: 1.5em;
+		}
+		textarea {
+			background-color: slategray;
+			color: #b1dede;
+			width: 95%;
+			height: 300px;
+			font-size: 1em;
+		}
+		textarea:hover, input:hover {
+			background-color: #5e83a8;
+		}
+		select, input {
+			background-color: slategray;
+			color: #b1dede;
+			width: 95%;
+			text-align: center;
+			font-size: 1.5em;
+		}
+		select:hover {
+			background-color: #5e83a8;
+			color: #4d1616;
+    	font-weight: 700;
+		}
+		.ytframe {
+			margin-top: 16px;
+		}
+		.menu-ul {
+			background-color: cadetblue;
+    	list-style: none;
+			display: block;
+		}
+		div.menu-ul {
+			min-width: 250px;
+			width: 100%;
+			background-color: cadetblue;
+			display: inline-table;
+		}
+		.menu-li {
+			padding: 6px;
+			float: left;
+		}
+		.menu-li a {
+			color: #2f2b49;
+			text-transform: uppercase;
+			text-decoration: none;
+			font-size: small;
+		}
+		.clear-both{
+			clear: both;
+		}
+		.text_translated {
+			color: green;
+			background-color: #bfe9e9;
+			padding: 10px;
+			line-height: 1.8em;
+			text-align: left;
+			font-size: 1.5em;
+		}
+	</style>
+</head>
+<body>
+	<div class="menu-ul">
+		<ul class="menu-ul">
+			<li class="menu-li"><a href="{{ url_for('index') }}">..Main</a></li>
+			<li class="menu-li"><a href="{{ url_for('translate') }}">.Translator</a></li>
+
+		</ul>
+	</div>
+	<div class="clear-both">&nbsp;</div>
+	<hr>
+
+	<!--
+	<span style="font-size:2em">em font size: 2em</span><br />
+	<span style="font-size:2vw">vw font size: 2vw</span><br />
+	<span style="font-size:2vh">vh font size: 2vh</span><br />
+	<span style="font-size:20px">px font size: 20px</span><br />
+	<span style="font-size:xx-large">xx-large font size: xx-large</span><br />
+	-->
+
+	<div class="container">
+		{% block content %} {% endblock %}
+	</div>
+
+</body>

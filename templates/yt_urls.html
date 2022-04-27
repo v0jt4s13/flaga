@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1 style="text-align:center">Dodaj url do YT</h1>
+    	
+			<form style="text-align:center" action="" method="post">
+			{{ form.csrf_token() }}
+                
+			<ul>
+				<li>{{ form.yt_input.label }}</li>
+				<li>{{ form.yt_input }}
+					<ul>
+						{% for error in form.yt_input.errors %}
+							<li style="color:red">{{ error }}</li>
+						{% endfor %}
+					</ul>
+				</li>
+
+				<li>{{ form.yt_textarea.label }}</li>
+				<li>{{ form.yt_textarea }}</li>
+
+				<li>{{ form.password.label }}</li>
+				<li>{{ form.password }}
+					<ul>
+						{% for error in form.password.errors %}
+							<li style="color:red">{{ error }}</li>
+						{% endfor %}
+					</ul>
+				</li>
+			</ul>
+
+			{{form.button}}
+
+			</form>
+
+{% endblock %}

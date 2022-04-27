@@ -102,7 +102,7 @@ def mainPageMenuList():
 	menu_list = []
 	menu_list.append(["left","/flagi","Flagi page"])
 	menu_list.append(["right","/pass-generator","Generator haseł"])
-	menu_list.append(["left","/doc","Dokumentacja startowa"])
+	menu_list.append(["left","/translator","Translator"])
 	menu_list.append(["right","/xd","xD page"])
 	menu_list.append(["right","/pykruter","Randomowe pytania z python'a"])
 	menu_list.append(["left","https://github.com/v0jt4s13/python-test","GitHub page"])

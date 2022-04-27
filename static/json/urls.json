@@ -269,5 +269,33 @@
             "library",
             ""
         ]
+    },
+    {
+        "url": "https://github.com/rkern/line_profiler",
+        "opis": "Python decorated benchmark for function speed",
+        "tagi": [
+            "Python",
+            "benchmark",
+            "line_profiler"
+        ]
+    },
+    {
+        "url": "https://github.com/MenroMi/awesome-python#testing",
+        "opis": "Python frameworks, libraries, software and resources",
+        "tagi": [
+            "Python",
+            "frameworks",
+            "libraries"
+        ]
+    },
+    {
+        "url": "https://certbot.eff.org/",
+        "opis": "Enable HTTPS on your website",
+        "tagi": [
+            "Free",
+            "certificates",
+            "SSL",
+            "HTTPS"
+        ]
     }
 ]
