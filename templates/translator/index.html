@@ -1,39 +1,88 @@
 {% extends "base.html" %}
 
 {% block content %}
-		<div style="text-align:center">
-			{% if text_translated != '': %}
-				<p>Przetłumaczony text:</p>
-				<div class='text_translated'>{{text_translated}}</div>
-			{% endif %}
+<style>
+	.radio {
+		white-space: nowrap;
+		padding-left: 0px;
+		list-style: none;
+		display: grid;
+		text-align: left;
+	}
+	.radio-wrap {
+		display: inline-flex;
+		width: 100%;
+	}
+	.radio>li>input {
+		margin-left: -5px;
+	}
+	.radio-li {
+		display: inline;
+		color: rgb(255, 187, 0);
+		padding: 6px;
+	}
+	.radio-li:hover {
+		color: black;
+		background-color: rgb(255, 187, 0);
+		padding: 6px;
+	}
+	.radio-li:checked {
+		color: black;
+		background-color: rgb(255, 187, 0);
+		padding: 6px;
+	}
+	.ltr-gear-label {
+		margin-left: 10px;
+	}
+</style>
+	<div class="lang-translated-field">
+		{% if text_translated != '': %}
+			<p>Przetłumaczony text</p>
+			<div class='text_translated'>{{text_translated}}</div>
+		{% endif %}
+	</div>
+	<form style="text-align:center" action="" method="POST">
+		{{ form.csrf_token() }}
+
+		<div class="radio-wrap">
+			<div class="radio">
+			{% for g in support_gear %}
+				<div class="radio-li">
+					<input id="ltr_gears-{{support_gear.index(g)}}" name="ltr_gears" type="radio" value="{{g[0]}}">
+					<label for="ltr_gears-{{support_gear.index(g)}}" class="ltr-gear-label">{{ g[1][0] }} {% if g[1][1]: %}({{ g[1][1] }}){% endif %}</label>
+				</div>
+			{% endfor %}
+			</div>
 		</div>
-		<form style="text-align:center" action="" method="POST">
-			{{ form.csrf_token() }}
-			<div>
-				<p>{{ form.ltr_textarea.label }}</p>
-				<p>{{ form.ltr_textarea }}</p>
-			</div>
-			<div>
-				<div>
-					<p>{{form.ltr_lang_from.label}}<br />
-					{{form.ltr_lang_from}}</p>
-				</div><div>
-					<p>{{form.ltr_lang_to.label}}<br />
-					{{form.ltr_lang_to}}</p>
+		<hr>
+		
+		<div class="lang-textarea">
+			{{ form.ltr_textarea.label }}
+			{{ form.ltr_textarea }}
+		</div>
+		<div class="lang-choose">
+			<div class="lang-choose-child">
+				<div class="from-lang-choose">
+					{{form.ltr_lang_from.label}}<br />
+					{{form.ltr_lang_from}}
 				</div>
-				<div>
-					{% if yt != '': %}
-					<p>{{form.yt.label}}<br />
-						{{form.yt}}
-					</p>
-					{% endif %}
-				</div>
-				<div>{{form.button}}</div>
-				<div class="ytframe">
-					<iframe width="200" height="200" src="https://www.youtube.com/embed/{{yt}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<div class="to-lang-choose">
+					{{form.ltr_lang_to.label}}<br />
+					{{form.ltr_lang_to}}
 				</div>
 			</div>
-			
-		</form>
+		</div>
+		{% if yt != '': %}
+		<div class="yt-input">
+			{{form.yt.label}}<br />
+			{{form.yt}}
+		</div>
+		{% endif %}
+		<div>{{form.button}}</div>
+		<div class="ytframe">
+			<iframe width="200" height="200" src="https://www.youtube.com/embed/{{yt}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+		
+	</form>
 
 {% endblock %}

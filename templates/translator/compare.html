@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<style>
+		.col1 {
+			float: left;
+			width: 350px;
+			padding: 3px 15px 3px 15px;
+    	border-style: double;
+    	color: black;
+		}
+		.col2 {
+			float: left;
+			width: 350px;
+			padding: 3px 15px 3px 15px;
+    	border-style: double;
+    	color: black;
+		}
+		.clear-both {
+			clear: both;
+		}
+		.table-head {
+			padding: 3px 15px 3px 15px;
+    	border-style: double;
+    	background-color: cadetblue;
+    	color: aliceblue;
+		}
+		.gear-name {
+			float: left;
+			font-weight: 700;
+			font-size: larger;
+			width: 100%;
+		}
+	</style>
+	<div class="lang-translated-field">
+		{% if art != '': %}
+		<p>Porównanie silników tłumaczących</p>
+		<div class='text_translated'>
+			{% for row in art: %}
+				{{ row }}<br />
+			{% endfor %}
+			<br /><b>Ilość znaków: {{ artc[1] }}</b>
+		</div>
+		<hr>
+		<div class='text_translated'>
+			{% for gear_row in tra: %}
+				{% for row in gear_row: %}
+					{% if gear_row.index(row) > 0 %}
+						{% if row[0] == 'TranslateGear' %}
+							<hr style="width:70%">
+							<!-- {% if gear_row.index(row) > 1 %}</div>{% endif %}<div> -->
+								<div class="gear-name">{{ row[1] }}</div>
+						{% elif row[0] == 'Price' %}
+								<div style="min-width: 780px;width:50%;float: right;">{{ row[1]|safe }}</div>
+						{% else %}
+							{{ row[1]|safe }}
+						{% endif %}
+					{% endif %}
+					
+				{% endfor %}
+				
+			{% endfor %}
+			<!--</div>-->
+		</div>
+		{% endif %}
+	</div>
+
+{% endblock %}

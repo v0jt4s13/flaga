@@ -7,7 +7,7 @@ from app_files.przydatne_linki import get_urls_list, get_urls_tags_list, update_
 from app_files.password_generator import password_generator
 from app_files.random_python_code import showRandomPythonCode
 from app_files.pykruter import random_question_from_csv
-from app_files.translate import string_text, ltr_form
+from app_files.translate import string_to_translate, ltr_form, gear_support_lang, gears_list, compare_translators
 from datetime import datetime
 from os import path, walk
 import random
@@ -229,23 +229,18 @@ def video():
 	return render_template("index.html")
 
 
+@app.route('/translator-compare')
+def translator_compare():
+	trl = test_translate_output()
+
+	return render_template("translator/compare.html", artc=trl[0], art=trl[1], tra=trl[2])
+
 @app.route('/translator', methods=["GET", "POST"])
 def translate(text_to_translate='',lang_from='',lang_to=''):
-	#logging.info('11111111111111111')
+	#print('SSSSSSSSSSSSSSSSSSSSSSS')
 	yt = ''
-	text_translated = ''
+	translated_text = ''
 	form = ltr_form()
-
-	if request.method == 'GET':
-		#logging.info('2222222222222222222')
-		try:
-			text_to_translate = request.args.get('ltr_textarea')
-			lang_from = request.args.get('ltr_lang_from')
-			lang_to = request.args.get('ltr_lang_to')
-			yt = request.args.get('yt')
-			text_translated = string_text(text_to_translate,lang_from,lang_to)
-		except:
-			pass
 
 	if request.method == 'POST':
 		#logging.info('request method == POST')
@@ -253,41 +248,103 @@ def translate(text_to_translate='',lang_from='',lang_to=''):
 			lang_from = form.ltr_lang_from.data
 			lang_to = form.ltr_lang_to.data
 			text_to_translate = form.ltr_textarea.data
-			text_translated = string_text(text_to_translate,lang_from,lang_to)
+			ltr_gears = form.ltr_gears.data
+			gear = dict(gears_list())[ltr_gears][0]
+			gear = gear.replace(' ', '')
+			if gear == 'CompareTranslators':
+				#return_translated_list = [['TextToTranslate', ['Wklej tekst do tłumaczenia']], ['TranslateGear', 'MyMemoryTranslator'], ['Price', 'Free'], ['OK', 'Вставте текст для перекладу'], ['TranslateGear', 'GoogleTranslator'], ['Price', 'Free'], ['OK', 'Вставте текст, який потрібно перекласти'], ['TranslateGear', 'YandexTranslator'], ['Price', '<div class="table-head col1">Number of characters in the requests for the Reporting period</div><div class="table-head col2">Rate (in US dollars per 1 million characters)</div><div class="clear-both"></div><div class="col1">less 50 000 000</div><div class="col2">15</div><div class="clear-both"></div><div class="col1">from 50 000 001 to 100 000 000</div><div class="col2">12</div><div class="clear-both"></div><div class="col1">from 100 000 001 to 200 000 000</div><div class="col2">10</div><div class="clear-both"></div><div class="col1">from 200 000 001 to 500 000 000</div><div class="col2">8</div><div class="clear-both"></div><div class="col1">from 500 000 001 to 1 000 000 000</div><div class="col2">6</div><div class="clear-both"></div>'], ['Err', 'ServerException(\'ERR_KEY_INVALID\')'], ['TranslateGear', 'MicrosoftTranslator'], ['Price', '<div class="table-head">2M chars of any combination of standard translation and custom training free per month\n then $10 per 1M chars of standard translation</div><div class="clear-both"></div>'], ['OK', 'Вставлення тексту для перекладу'], ['TranslateGear', 'DeeplTranslator'], ['Err', 'DeeplTranslator - Invalid target language!'], ['TranslateGear', 'PonsTranslator'], ['Err', 'PonsTranslator - Invalid target language!'], ['TranslateGear', 'CompareTranslators'], ['Err', 'CompareTranslators - Invalid target language!']]
+				return_translated_list = string_to_translate(gear,text_to_translate,lang_from,lang_to)
+			
+				#print('\n\n\n\n*******************************************\n\n\n\n')
+				#print(return_translated_list)
+				#print('\n\n\n\n*******************************************\n\n\n\n')
+				new_translated_list = []
+				err = 0
+				for idx,l in enumerate(return_translated_list):
+					if idx == 0:
+						new_translated_list.append(l)
+					elif l[0] == 'TranslateGear':
+						if idx > 1:
+							translated_article_str = ' '.join(translated_article_list)
+							new_translated_list.append(['OK', translated_article_str])
+						new_translated_list.append(l)
+						translated_article_list = []
+						if err == 1:
+							err = 0
+							#new_translated_list.append(['Price', '&nbsp;'])
+					elif l[0] == 'Price' and return_translated_list[idx-1][0] == 'TranslateGear':
+						new_translated_list.append(l)
+					elif l[0] == 'OK' and 'Invalid target language' not in l[1]:
+						translated_article_list.append(l[1])
+						#print(translated_article_list)
+					elif l[0] == 'Err' or 'Invalid target language' in l[1] or 'TooManyRequests' in l[1]:
+						translated_article_list.append(l[1])
+						err = 1
+					#print('\n\n+++++++++++++++',idx,'++++++++++++++++++\n',l,'\n+++++++++++++++++++++++++++++++++')
+				new_translated_list.append(translated_article_list)
+				#print('\n\n\n\n*******************************************\n\n\n\n')
+
+				#print(new_translated_list[0])
+				# for idx,li in enumerate(new_translated_list):
+				# 	if idx > 0:
+				# 		print(idx,new_translated_list[idx])
+				
+
+				trl = compare_translators(new_translated_list)
+
+				return render_template("translator/compare.html", trl=trl, artc=trl[0], art=trl[1], tra=trl[2:])
+  
+			else:
+				prev_translated = check_translated(gear,text_to_translate)
+				if not prev_translated:
+					return_translated_list = string_to_translate(gear,text_to_translate,lang_from,lang_to)
+					translated_gear = return_translated_list[0][1]
+					if return_translated_list[-1][0] == 'OK':
+						translated_text = return_translated_list[-1][1]
+					else:
+						translated_text = 'Wystąpił błąd podczas tłumaczenia.'
+				else:
+					translated_text = prev_translated
+    
 		except ValueError as e:
 			#logging.info('POST Error')
 			try:
-				text_translated = e
+				translated_text = e
 			except:
-				text_translated = 'BŁĄÐ'
-
-	#logging.info('5555555555555555')
+				translated_text = 'BŁĄÐ'
 	
 	if not form.ltr_textarea.data:
-		#logging.info('6666666666666')
 		form.ltr_textarea.data = ''
 
-	#if not text_translated:
+	support_gear = gear_support_lang()
+
+	#if not translated_text:
 	if form.validate_on_submit():
-		#logging.info('if form.validate_on_submit()')
+		
 		ltr_textarea = form.ltr_textarea.data
 		ltr_lang_from = form.ltr_lang_from.data
 		ltr_lang_to = form.ltr_lang_to.data
 		yt = form.yt.data
-		#output_data = '{}\n\n'.format(ltr_textarea)
-		#save_data(output_data)
-		ytl = yt.split('=')
-		yt = ytl[-1]
+		ltr_gears = form.ltr_gears.data
+		#print(ltr_textarea)
+		#print(' * '*50)
+		output_data = '{}\n{}\n{}\n'.format(translated_gear,ltr_textarea,translated_text)
+		#print(output_data)
+		save_data(output_data)
+		if yt:
+			ytl = yt.split('=')
+			yt = ytl[-1]
 		if not yt:
 			ytl = ['xM5LrjHPgnI','rxDxuATpZrA','no660i3aIsc','cXYdqalrrRk','CbMoTLmq3Do','JdfSvYkEArc','6tOuW8m08EU','ti5dboE4Iyo']
 			yt = ytl[random.randrange(0,len(ytl)-1)]
-		
+	 
 		#return redirect( url_for("translate", ltr_textarea=ltr_textarea, ltr_lang_from=ltr_lang_from, ltr_lang_to=ltr_lang_to, yt=yt, ytl=ytl) )
 		#logging.info('return render_template ==> 11111')
-		return render_template("translator/index.html", met=request.method, form=form, text_translated=text_translated, \
-																										ltr_textarea=ltr_textarea, ltr_lang_from=ltr_lang_from, ltr_lang_to=ltr_lang_to, yt=yt)
-	#logging.info('return render_template ==> 22222')	
-	return render_template("translator/index.html", form=form, text_translated=text_translated, yt=yt)
+		return render_template("translator/index.html", met=request.method, form=form, text_translated=translated_text, \
+																										ltr_textarea=ltr_textarea, ltr_lang_from=ltr_lang_from, ltr_lang_to=ltr_lang_to, \
+																										yt=yt, ltr_gears=ltr_gears)
+
+	return render_template("translator/index.html", form=form, text_translated=translated_text, yt=yt, support_gear=support_gear)
 
 
 # Errors

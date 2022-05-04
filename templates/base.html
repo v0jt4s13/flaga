@@ -11,19 +11,23 @@
 		textarea {
 			background-color: slategray;
 			color: #b1dede;
-			width: 95%;
+			width: 90vw;
 			height: 300px;
 			font-size: 1em;
 		}
 		textarea:hover, input:hover {
 			background-color: #5e83a8;
 		}
-		select, input {
+		select {
 			background-color: slategray;
 			color: #b1dede;
 			width: 95%;
 			text-align: center;
 			font-size: 1.5em;
+		}
+		input[type="submit"] {
+			width: auto;
+			padding: 10px 20px;
 		}
 		select:hover {
 			background-color: #5e83a8;
@@ -31,7 +35,7 @@
     	font-weight: 700;
 		}
 		.ytframe {
-			margin-top: 16px;
+			margin-top: 50px;
 		}
 		.menu-ul {
 			background-color: cadetblue;
@@ -52,7 +56,7 @@
 			color: #2f2b49;
 			text-transform: uppercase;
 			text-decoration: none;
-			font-size: small;
+			font-size: smaller;
 		}
 		.clear-both{
 			clear: both;
@@ -63,16 +67,62 @@
 			padding: 10px;
 			line-height: 1.8em;
 			text-align: left;
+		}
+		.lang-translated-field {
+			text-align:center
+		}
+		.lang-translated-field p {
+			font-size: larger;
+    	line-height: 2em;
+		}
+		.lang-textarea {
+			font-size: larger;
+    	line-height: 2em;
+		}
+		.lang-choose {
+    	text-align: center;
+			margin-bottom: 20px;
+		}
+		.lang-choose-child {
+			text-align: center;
+			margin: 0 auto;
+			display: inline-flex;
+    	flex-wrap: wrap;
+			place-content: center;
+		}		
+		.from-lang-choose {
+			width: 45vw;
+			min-width: 300px;
+		}
+		.from-lang-choose>label {
 			font-size: 1.5em;
+			line-height: 2em;
+		}
+		.to-lang-choose {
+			width: 45vw;
+			min-width: 300px;
+		}
+		.to-lang-choose>label {
+			font-size: 1.5em;
+			line-height: 2em;
+		}		
+		.yt-input {
+			text-align: center;
+    	padding-top: 15px;
+    	padding-bottom: 25px;
+		}
+		input#yt {
+			width: 70%;
 		}
 	</style>
 </head>
 <body>
 	<div class="menu-ul">
+
 		<ul class="menu-ul">
 			<li class="menu-li"><a href="{{ url_for('index') }}">..Main</a></li>
 			<li class="menu-li"><a href="{{ url_for('translate') }}">.Translator</a></li>
-
+			<li class="menu-li"><a href="/pass-generator">.Generator haseł</a></li>
 		</ul>
 	</div>
 	<div class="clear-both">&nbsp;</div>
